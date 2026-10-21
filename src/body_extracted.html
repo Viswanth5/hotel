@@ -1,0 +1,898 @@
+<!-- ============ PROGRESS / GRAIN / PRELOADER ============ -->
+<div class="progress" id="progress" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<div class="preloader" id="preloader" aria-hidden="true">
+  <div class="preloader__inner">
+    <div class="preloader__mark">MARUTHAM</div>
+    <span class="preloader__tamil">மருதம்</span>
+    <div class="preloader__bar"><i></i></div>
+    <div class="preloader__sub">Vegetal Fine Dining — Madurai</div>
+  </div>
+</div>
+
+<!-- ============ NAVIGATION ============ -->
+<header class="nav" id="nav">
+  <a class="brand" href="#hero" aria-label="Marutham — home">
+    MARUTHAM <span class="brand__tamil">மருதம்</span>
+  </a>
+
+  <nav class="nav__links" aria-label="Primary">
+    <a href="#story">Story</a>
+    <a href="#dishes">Dishes</a>
+    <a href="#menu">Menu</a>
+    <a href="#experience">Experience</a>
+    <a href="#gallery">Gallery</a>
+  </nav>
+
+  <div class="nav__right">
+    <a class="btn btn--ghost magnetic" href="#reserve"><span>Reserve</span></a>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ============ MOBILE MENU ============ -->
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav aria-label="Mobile">
+    <a href="#story">Story</a>
+    <a href="#dishes">Dishes</a>
+    <a href="#menu">Menu</a>
+    <a href="#experience">Experience</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#reserve">Reserve</a>
+  </nav>
+  <div class="mobile-menu__foot">
+    12 North Chitrai Street, Madurai · +91 452 234 5678
+  </div>
+</div>
+
+<main id="main">
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <section class="hero" id="hero">
+    <div class="hero__media">
+      <img
+        src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&amp;fit=crop&amp;w=2200&amp;q=80"
+        alt="Warm, low-lit dining room at Marutham, Madurai" fetchpriority="high" data-parallax="0.22" />
+    </div>
+    <div class="hero__veil"></div>
+
+    <!-- Gopuram silhouette -->
+    <svg class="hero__gopuram" viewBox="0 0 640 200" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+      <g fill="none" stroke="currentColor" stroke-width="1" stroke-linejoin="miter" stroke-linecap="square">
+        <!-- base plinth -->
+        <rect x="150" y="172" width="340" height="20"/>
+        <line x1="150" y1="182" x2="490" y2="182"/>
+        <!-- tier 1 -->
+        <path d="M168 172 L472 172 L456 152 L184 152 Z"/>
+        <path d="M184 152 L456 152 L440 132 L200 132 Z"/>
+        <path d="M200 132 L440 132 L424 113 L216 113 Z"/>
+        <path d="M216 113 L424 113 L408 95 L232 95 Z"/>
+        <path d="M232 95 L408 95 L392 78 L248 78 Z"/>
+        <path d="M248 78 L392 78 L376 62 L264 62 Z"/>
+        <path d="M264 62 L376 62 L360 47 L280 47 Z"/>
+        <path d="M280 47 L360 47 L344 33 L296 33 Z"/>
+        <path d="M296 33 L344 33 L330 21 L310 21 Z"/>
+        <path d="M310 21 L330 21 L320 12 Z"/>
+        <!-- finial -->
+        <line x1="320" y1="12" x2="320" y2="3"/>
+        <circle cx="320" cy="2.5" r="2.4"/>
+        <!-- carved niches on tiers -->
+        <rect x="300" y="132" width="40" height="20"/>
+        <rect x="306" y="95" width="28" height="18"/>
+        <rect x="311" y="62" width="18" height="16"/>
+        <!-- side shrines -->
+        <rect x="100" y="142" width="30" height="50"/>
+        <path d="M100 142 L130 142 L124 128 L106 128 Z"/>
+        <line x1="115" y1="128" x2="115" y2="120"/>
+        <circle cx="115" cy="118" r="1.8"/>
+        <rect x="510" y="142" width="30" height="50"/>
+        <path d="M510 142 L540 142 L534 128 L516 128 Z"/>
+        <line x1="525" y1="128" x2="525" y2="120"/>
+        <circle cx="525" cy="118" r="1.8"/>
+        <!-- outer walls -->
+        <line x1="60" y1="192" x2="580" y2="192"/>
+        <rect x="60" y="192" width="520" height="8"/>
+        <!-- entrance arch -->
+        <path d="M286 172 L286 150 Q320 128 354 150 L354 172"/>
+      </g>
+    </svg>
+
+    <div class="hero__inner container">
+      <p class="hero__eyebrow">
+        <span class="tamil">மதுரை</span>
+        <span class="dot" aria-hidden="true"></span>
+        <span>Vegetal Kitchen · Est. 1994</span>
+      </p>
+      <h1 class="hero__title">
+        <span class="line"><span class="li">Where the <em>temple town</em></span></span>
+        <span class="line"><span class="li">becomes the plate</span></span>
+      </h1>
+      <p class="hero__sub">
+        A nine-course tasting menu composed each morning from jasmine-lined
+        farms along the Vaigai. Nothing out of season. Nothing imitated.
+      </p>
+      <div class="hero__actions">
+        <a class="btn btn--solid magnetic" href="#reserve">
+          <span>Reserve a Table</span>
+          <span class="btn__arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="btn btn--ghost magnetic" href="#menu"><span>Explore the Menu</span></a>
+      </div>
+    </div>
+
+    <div class="hero__foot container">
+      <span>Seasonal Menu No. 12 — Aadi</span>
+      <a class="scroll-cue" href="#story" aria-label="Scroll to our story">
+        <span class="scroll-cue__line" aria-hidden="true"></span>
+        <span>Scroll</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       STORY
+       ============================================================ -->
+  <section class="section" id="story">
+    <div class="container">
+      <div class="sec-head" data-reveal>
+        <span class="label">01 — Our Story <span class="tamil">எங்கள் கதை</span></span>
+        <span class="rule" aria-hidden="true"></span>
+      </div>
+
+      <div class="story__grid">
+        <div class="story__media">
+          <div class="arch-wrap">
+            <div class="arch" data-mask>
+              <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&amp;fit=crop&amp;w=1200&amp;q=80"
+                   alt="A composed bowl of seasonal vegetables and herbs" loading="lazy" decoding="async" />
+            </div>
+          </div>
+          <div class="story__media--sub arch-wrap" data-mask style="--d:.25s">
+            <div class="arch">
+              <img src="https://images.unsplash.com/photo-1466637574441-749b8f19452f?auto=format&amp;fit=crop&amp;w=700&amp;q=80"
+                   alt="Freshly harvested vegetables on a wooden table" loading="lazy" decoding="async" />
+            </div>
+          </div>
+        </div>
+
+        <div class="story__copy">
+          <h2 class="display" data-reveal>
+            Rooted in the red soil of <em>Madurai</em>.
+          </h2>
+          <p class="lede" data-reveal style="--d:.1s">
+            Four thousand years of unbroken city, a temple at its centre, and a
+            market that has traded <span class="tamil">மல்லிகை</span> for longer
+            than most capitals have existed. Marutham began here, on North
+            Chitrai Street, with a stubborn conviction: that vegetables, given the
+            reverence of any grand ingredient, could carry an entire evening.
+          </p>
+          <p class="lede" data-reveal style="--d:.18s">
+            Each morning the kitchen receives whatever the Vaigai farms decide to
+            give. The menu is written after the harvest — never before it. Nothing
+            is flown in out of season, and nothing on the plate is asked to imitate
+            meat. The garden speaks; we simply listen.
+          </p>
+
+          <div class="signature" data-reveal style="--d:.26s">
+            <span class="signature__name">Meera Krishnan</span>
+            <span class="signature__role">Chef &amp; Patron</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="story__stats">
+        <div class="stat" data-reveal>
+          <span class="stat__num">1994</span>
+          <span class="stat__label">Established</span>
+        </div>
+        <div class="stat" data-reveal style="--d:.08s">
+          <span class="stat__num">1 ha</span>
+          <span class="stat__label">Vaigai Farm</span>
+        </div>
+        <div class="stat" data-reveal style="--d:.16s">
+          <span class="stat__num">9</span>
+          <span class="stat__label">Course Menu</span>
+        </div>
+        <div class="stat" data-reveal style="--d:.24s">
+          <span class="stat__num">100%</span>
+          <span class="stat__label">Plant-Based</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="tile-band" aria-hidden="true"></div>
+
+  <!-- ============================================================
+       SIGNATURE DISHES
+       ============================================================ -->
+  <section class="section section--tight" id="dishes">
+    <div class="container">
+      <div class="sec-head" data-reveal>
+        <span class="label">02 — Signature Dishes <span class="tamil">சிறப்பு உணவு</span></span>
+        <span class="rule" aria-hidden="true"></span>
+      </div>
+
+      <h2 class="display sec-title" data-reveal style="--d:.08s">
+        Three plates that define <em>the season</em>.
+      </h2>
+
+      <div class="dishes__list">
+
+        <article class="dish" data-reveal>
+          <div class="dish__media arch-wrap">
+            <div class="arch">
+              <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&amp;fit=crop&amp;w=1200&amp;q=80"
+                   alt="Kuzhi paniyaram served in a cast-iron pan" loading="lazy" decoding="async" />
+            </div>
+          </div>
+          <div class="dish__body">
+            <span class="dish__num">01</span>
+            <h3 class="dish__name">
+              Kuzhi Paniyaram
+              <span class="dish__tamil">குழி பணியாரம்</span>
+            </h3>
+            <p class="dish__desc">
+              Fermented rice and urad dumplings seared in cast iron until crisp,
+              served with a coconut chutney emulsion and a bright oil of fresh
+              curry leaf from the kitchen garden.
+            </p>
+            <ul class="tags">
+              <li>Cast Iron</li><li>Coconut</li><li>Curry Leaf</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="dish" data-reveal>
+          <div class="dish__media arch-wrap">
+            <div class="arch">
+              <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&amp;fit=crop&amp;w=1200&amp;q=80"
+                   alt="Banana blossom with sambar emulsion" loading="lazy" decoding="async" />
+            </div>
+          </div>
+          <div class="dish__body">
+            <span class="dish__num">02</span>
+            <h3 class="dish__name">
+              Vazhaipoo
+              <span class="dish__tamil">வாழைப்பூ</span>
+            </h3>
+            <p class="dish__desc">
+              Banana blossom simmered in a two-day sambar reduction, finished
+              with jaggery caramel, roasted urad powder and a scatter of
+              curry leaf crisps.
+            </p>
+            <ul class="tags">
+              <li>Banana Blossom</li><li>Sambar</li><li>Jaggery</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="dish" data-reveal>
+          <div class="dish__media arch-wrap">
+            <div class="arch">
+              <img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&amp;fit=crop&amp;w=1200&amp;q=80"
+                   alt="Jackfruit biryani with seeraga samba rice" loading="lazy" decoding="async" />
+            </div>
+          </div>
+          <div class="dish__body">
+            <span class="dish__num">03</span>
+            <h3 class="dish__name">
+              Kathal Biryani
+              <span class="dish__tamil">கதலி பிரியாணி</span>
+            </h3>
+            <p class="dish__desc">
+              Young jackfruit braised with stone-ground masala, layered with
+              seeraga samba rice and served alongside a coconut kuruma and
+              crisp fried shallots.
+            </p>
+            <ul class="tags">
+              <li>Jackfruit</li><li>Seeraga Samba</li><li>Kuruma</li>
+            </ul>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="kolam-rule" aria-hidden="true">
+    <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.1">
+      <circle cx="20" cy="20" r="3"/>
+      <circle cx="20" cy="8" r="1.4" fill="currentColor" stroke="none"/>
+      <circle cx="20" cy="32" r="1.4" fill="currentColor" stroke="none"/>
+      <circle cx="8" cy="20" r="1.4" fill="currentColor" stroke="none"/>
+      <circle cx="32" cy="20" r="1.4" fill="currentColor" stroke="none"/>
+      <path d="M20 3 Q26 13 20 20 Q14 27 20 37 Q26 27 20 20 Q14 13 20 3Z"/>
+      <path d="M3 20 Q13 26 20 20 Q27 14 37 20 Q27 26 20 20 Q13 14 3 20Z"/>
+    </svg>
+  </div>
+
+  <!-- ============================================================
+       MENU
+       ============================================================ -->
+  <section class="section section--wine" id="menu">
+    <div class="container">
+      <div class="sec-head" data-reveal>
+        <span class="label">03 — The Menu <span class="tamil">உணவு பட்டியல்</span></span>
+        <span class="rule" aria-hidden="true"></span>
+      </div>
+
+      <h2 class="display sec-title" data-reveal style="--d:.08s">
+        Written after the <em>harvest</em>.
+      </h2>
+
+      <div class="menu__tabs" role="tablist" aria-label="Menu categories">
+        <button class="tab is-active" role="tab" aria-selected="true" aria-controls="panel-prelude" data-cat="prelude">
+          <span>Prelude</span><span class="tamil">துவக்கம்</span>
+        </button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="panel-fire" data-cat="fire">
+          <span>From the Fire</span><span class="tamil">நெருப்பு</span>
+        </button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="panel-grain" data-cat="grain">
+          <span>Rice &amp; Lentils</span><span class="tamil">சாதம்</span>
+        </button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="panel-sweet" data-cat="sweet">
+          <span>Sweet</span><span class="tamil">இனிப்பு</span>
+        </button>
+      </div>
+
+      <!-- PRELUDE -->
+      <div class="menu__panel is-active" id="panel-prelude" data-panel="prelude" role="tabpanel">
+        <ul>
+          <li class="menu__item">
+            <div class="mi__head">
+              <h4 class="mi__name">Vazhaipoo Vada <span class="tamil">வாழைப்பூ</span></h4>
+              <span class="mi__leader" aria-hidden="true"></span>
+              <span class="mi__price">₹650</span>
+            </div>
+            <p class="mi__desc">Banana blossom fritter, sambar emulsion, curry leaf oil.</p>
+          </li>
+          <li class="menu__item">
+            <div class="mi__head">
+              <h4 class="mi__name">Kambu &amp; Cucumber <span class="tamil">கம்பு</span></h4>
+              <span class="mi__leader" aria-hidden="true"></span>
+              <span class="mi__price">₹600</span>
+            </div>
+            <p class="mi__desc">Pearl millet, cucumber granita, mint, lime.</p>
+          </li>
+          <li class="menu__item">
+            <div class="mi__head">
+              <h4 class="mi__name">Beetroot &amp; Ellu <span class="tamil">எள்</span></h4>
+              <span class="mi__leader" aria-hidden="true"></span>
+              <span class="mi__price">₹680</span>
+            </div>
+            <p class="mi__desc">Fermented beetroot, black sesame, horseradish snow.</p>
+          </li>
+          <li class="menu__item">
+            <div class="mi__head">
+              <h4 class="mi__name">Sundakkai Velouté <span class="tamil">சுண்டைக்காய்</span></h4>
+              <span class="mi__leader" aria-hidden="true"></span>
+              <span class="mi__price">₹580</span>
+            </div>
+            <p class="mi__desc">Turkey berry poured at the table, black pepper, coconut cream.</p>
+          </li>
+        </ul>
+      </div>
+
+      <!-- FIRE -->
+      <div class="menu__panel" id="panel-fire" data-panel="fire" role="tabpanel">
+        <ul>
+          <li class="menu__item">
+            <div class="mi__head">
+              <h4 class="mi__name">Kuzhi Paniyaram <span class="tamil">குழி பணியாரம்</span></h4>
+              <span class="mi__leader" aria-hidden="true"></span>
+              <span class="mi__price">₹850</span>
+            </div>
+            <p class="mi__desc">Cast iron sear, coconut chutney emulsion, curry leaf oil.</p>
+          </li>
+          <li class="menu__item">
+            <div class="mi__head">
+              <h4 class="mi__name">Charred Vaazhaithandu <span class="tamil">வாழைத்தண்டு</span></h4>
+              <span class="mi__leader" aria-hidden="true"></span>
+              <span class="mi__price">₹780</span>
+            </div>
+            <p class="mi__desc">Banana stem over coconut husk embers, sunflower miso, sesame.</p>
+          </li>
+          <li class="menu__item">
+            <div class="mi__head">
+              <h4 class="mi__name">Smoked Kathirikai <span class="tamil">கத்தரிக்காய்</span></h4>
+              <span class="mi__leader" aria-hidden="true"></span>
+              <span class="mi__price">₹820</span>
+            </div>
+            <p class="mi__desc">Aubergine, sesame tahini, pomegranate, burnt chilli, mint.</p>
+          </li>
+          <li class="menu__item">
+            <div class="mi__head">
+              <h4 class="mi__name">Wood-Fired Murungai <span class="tamil">முருங்கை</span></h4>
+              <span class="mi__leader" aria-hidden="true"></span>
+              <span class="mi__price">₹760</span>
+            </div>
+            <p class="mi__desc">Drumstick over wood fire, almond romesco, curry leaf crumb.</p>
+          </li>
+        </ul>
+      </div>
+
+      <!-- GRAIN -->
+      <div class="menu__panel" id="panel-grain" data-panel="grain" role="tabpanel">
+        <ul>
+          <li class="menu__item">
+            <div class="mi__head">
+              <h4 class="mi__name">Kathal Biryani <span class="tamil">கதலி பிரியாணி</span></h4>
+              <span class="mi__leader" aria-hidden="true"></span>
+              <span class="mi__price">₹1,050</span>
+            </div>
+            <p class="mi__desc">Young jackfruit, seeraga samba, coconut kuruma, fried shallots.</p>
+          </li>
+          <li class="menu__item">
+            <div class="mi__head">
+              <h4 class="mi__name">Kambu Risotto <span class="tamil">கம்பு</span></h4>
+              <span class="mi__leader" aria-hidden="true"></span>
+              <span class="mi__price">₹880</span>
+            </div>
+            <p class="mi__desc">Pearl millet, pumpkin seed, sage, aged vegetable broth.</p>
+          </li>
+          <li class="menu__item">
+            <div class="mi__head">
+              <h4 class="mi__name">Saffron Semiya <span class="tamil">செமியா</span></h4>
+              <span class="mi__leader" aria-hidden="true"></span>
+              <span class="mi__price">₹920</span>
+            </div>
+            <p class="mi__desc">Kashmiri saffron, preserved lemon, baby fennel, fennel pollen.</p>
+          </li>
+          <li class="menu__item">
+            <div class="mi__head">
+              <h4 class="mi__name">Karamani Cassoulet <span class="tamil">காராமணி</span></h4>
+              <span class="mi__leader" aria-hidden="true"></span>
+              <span class="mi__price">₹840</span>
+            </div>
+            <p class="mi__desc">Black-eyed peas slow-cooked, tomato confit, garlic crumb.</p>
+          </li>
+        </ul>
+      </div>
+
+      <!-- SWEET -->
+      <div class="menu__panel" id="panel-sweet" data-panel="sweet" role="tabpanel">
+        <ul>
+          <li class="menu__item">
+            <div class="mi__head">
+              <h4 class="mi__name">Jigarthanda <span class="tamil">ஜிகர்தண்டா</span></h4>
+              <span class="mi__leader" aria-hidden="true"></span>
+              <span class="mi__price">₹450</span>
+            </div>
+            <p class="mi__desc">Almond gum, nannari syrup, coconut-milk ice, sarsaparilla.</p>
+          </li>
+          <li class="menu__item">
+            <div class="mi__head">
+              <h4 class="mi__name">Dark Chocolate &amp; Gingelly <span class="tamil">எள்</span></h4>
+              <span class="mi__leader" aria-hidden="true"></span>
+              <span class="mi__price">₹480</span>
+            </div>
+            <p class="mi__desc">Seventy percent cremeux, first-press sesame oil, sea salt.</p>
+          </li>
+          <li class="menu__item">
+            <div class="mi__head">
+              <h4 class="mi__name">Filter Coffee Crème <span class="tamil">பில்டர் காபி</span></h4>
+              <span class="mi__leader" aria-hidden="true"></span>
+              <span class="mi__price">₹420</span>
+            </div>
+            <p class="mi__desc">Chicory filter coffee, jaggery, cardamom, coconut cream.</p>
+          </li>
+          <li class="menu__item">
+            <div class="mi__head">
+              <h4 class="mi__name">Elaneer Payasam <span class="tamil">இளநீர் பாயாசம்</span></h4>
+              <span class="mi__leader" aria-hidden="true"></span>
+              <span class="mi__price">₹440</span>
+            </div>
+            <p class="mi__desc">Tender coconut, palm sugar, cardamom, cashew praline.</p>
+          </li>
+        </ul>
+      </div>
+
+      <div class="menu__note">
+        <p data-reveal>
+          <strong>Nine-course tasting menu</strong>
+          ₹4,500 per guest · neer (pairing) ₹2,200 · non-alcoholic pairing ₹1,400
+        </p>
+        <p data-reveal style="--d:.08s">
+          <strong>Dietary adaptations</strong>
+          Vegan, gluten-free and allergen-free versions are prepared with 48 hours'
+          notice. Please tell us when you book.
+        </p>
+        <p data-reveal style="--d:.16s">
+          <strong>Prices</strong>
+          All prices in rupees, inclusive of service. The menu changes with the
+          harvest, sometimes daily.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       EXPERIENCE
+       ============================================================ -->
+  <section class="section" id="experience">
+    <div class="container">
+      <div class="exp__grid">
+        <div class="exp__intro">
+          <div class="sec-head" data-reveal>
+            <span class="label">04 — The Experience <span class="tamil">அனுபவம்</span></span>
+          </div>
+          <h2 class="display" data-reveal style="--d:.08s">
+            An evening composed in <em>four movements</em>.
+          </h2>
+          <p class="lede" data-reveal style="--d:.16s">
+            Twelve tables. Nine people in the room. Three and a half hours.
+            Everything at Marutham is built to slow the evening down.
+          </p>
+        </div>
+
+        <div class="exp__list">
+          <article class="exp__item" data-reveal>
+            <span class="exp__index">i</span>
+            <div>
+              <h3>The Room</h3>
+              <p>Twelve tables set beneath granite pillars and brass lamps. Oak,
+                 raw linen, jasmine from the market, and the quiet hum of a room
+                 designed for conversation.</p>
+            </div>
+            <div class="exp__thumb">
+              <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&amp;fit=crop&amp;w=400&amp;q=80"
+                   alt="The dining room at Marutham" loading="lazy" decoding="async" />
+            </div>
+          </article>
+
+          <article class="exp__item" data-reveal style="--d:.08s">
+            <span class="exp__index">ii</span>
+            <div>
+              <h3>The Service</h3>
+              <p>No scripts and no ceremony — only people who have spent years
+                 learning <span class="tamil">விருந்தோம்பல்</span>, the Tamil art of
+                 hospitality, and who know when a glass needs filling.</p>
+            </div>
+            <div class="exp__thumb">
+              <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&amp;fit=crop&amp;w=400&amp;q=80"
+                   alt="Service in the dining room" loading="lazy" decoding="async" />
+            </div>
+          </article>
+
+          <article class="exp__item" data-reveal style="--d:.16s">
+            <span class="exp__index">iii</span>
+            <div>
+              <h3>The Harvest</h3>
+              <p>Everything begins on one hectare along the Vaigai, where our
+                 growers plant by the Tamil almanac and harvest by hand each morning.</p>
+            </div>
+            <div class="exp__thumb">
+              <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&amp;fit=crop&amp;w=400&amp;q=80"
+                   alt="Vegetables from the Vaigai farm" loading="lazy" decoding="async" />
+            </div>
+          </article>
+
+          <article class="exp__item" data-reveal style="--d:.24s">
+            <span class="exp__index">iv</span>
+            <div>
+              <h3>The Craft</h3>
+              <p>Ferments aged in clay, broths reduced for days, spices ground on
+                 stone each morning. Vegetables treated with the precision of a
+                 pastry kitchen.</p>
+            </div>
+            <div class="exp__thumb">
+              <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&amp;fit=crop&amp;w=400&amp;q=80"
+                   alt="Plating in the kitchen" loading="lazy" decoding="async" />
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="tile-band" aria-hidden="true"></div>
+
+  <!-- ============================================================
+       GALLERY
+       ============================================================ -->
+  <section class="section section--leaf" id="gallery">
+    <div class="container">
+      <div class="sec-head" data-reveal>
+        <span class="label">05 — Gallery <span class="tamil">படத்தொகுப்பு</span></span>
+        <span class="rule" aria-hidden="true"></span>
+      </div>
+      <h2 class="display sec-title" data-reveal style="--d:.08s">
+        The town, the soil, <em>the plate</em>.
+      </h2>
+
+      <div class="gallery__grid" id="galleryGrid">
+        <figure class="gal gal--a" data-d="0s" data-src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&amp;fit=crop&amp;w=1600&amp;q=80" tabindex="0" role="button" aria-label="Open image: the dining room">
+          <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="The dining room at dusk" loading="lazy" decoding="async" />
+          <figcaption class="gal__cap"><span class="tamil">அறை</span>The Room</figcaption>
+        </figure>
+
+        <figure class="gal gal--b" data-d=".08s" data-src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" tabindex="0" role="button" aria-label="Open image: seasonal bowl">
+          <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="A seasonal vegetable bowl" loading="lazy" decoding="async" />
+          <figcaption class="gal__cap"><span class="tamil">பருவம்</span>Season</figcaption>
+        </figure>
+
+        <figure class="gal gal--c" data-d=".16s" data-src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" tabindex="0" role="button" aria-label="Open image: table of vegetables">
+          <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="A table of market vegetables" loading="lazy" decoding="async" />
+          <figcaption class="gal__cap"><span class="tamil">அறுவடை</span>Harvest</figcaption>
+        </figure>
+
+        <figure class="gal gal--d" data-d=".24s" data-src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&amp;fit=crop&amp;w=1600&amp;q=80" tabindex="0" role="button" aria-label="Open image: plated course">
+          <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="A plated course" loading="lazy" decoding="async" />
+          <figcaption class="gal__cap"><span class="tamil">படையல்</span>Course IV</figcaption>
+        </figure>
+
+        <figure class="gal gal--e" data-d=".32s" data-src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" tabindex="0" role="button" aria-label="Open image: garden bowl">
+          <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="A garden bowl" loading="lazy" decoding="async" />
+          <figcaption class="gal__cap"><span class="tamil">தோட்டம்</span>Garden</figcaption>
+        </figure>
+
+        <figure class="gal gal--f" data-d=".4s" data-src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" tabindex="0" role="button" aria-label="Open image: composed plate">
+          <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="A composed vegetable plate" loading="lazy" decoding="async" />
+          <figcaption class="gal__cap"><span class="tamil">கோலம்</span>Composition</figcaption>
+        </figure>
+
+        <figure class="gal gal--g" data-d=".48s" data-src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&amp;fit=crop&amp;w=1600&amp;q=80" tabindex="0" role="button" aria-label="Open image: evening service">
+          <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Evening service" loading="lazy" decoding="async" />
+          <figcaption class="gal__cap"><span class="tamil">சேவை</span>Service</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       TESTIMONIALS
+       ============================================================ -->
+  <section class="section" id="testimonials">
+    <div class="container">
+      <div class="sec-head" data-reveal>
+        <span class="label">06 — Guests <span class="tamil">விருந்தினர்</span></span>
+        <span class="rule" aria-hidden="true"></span>
+      </div>
+
+      <div class="quotes" id="quotes">
+        <blockquote class="quote is-active">
+          <span class="quote__mark" aria-hidden="true">“</span>
+          <p>A revelation. I have eaten in three-star dining rooms that felt less considered than this.</p>
+          <footer><strong>Meena Raghavan</strong>The Hindu</footer>
+        </blockquote>
+        <blockquote class="quote">
+          <span class="quote__mark" aria-hidden="true">“</span>
+          <p>Marutham does something rare: it makes you forget there was ever anything missing from the plate.</p>
+          <footer><strong>Arjun Menon</strong>Condé Nast Traveller India</footer>
+        </blockquote>
+        <blockquote class="quote">
+          <span class="quote__mark" aria-hidden="true">“</span>
+          <p>Nine courses, and not one moment where the room stopped paying attention.</p>
+          <footer><strong>Priya Sundaram</strong>Forbes India</footer>
+        </blockquote>
+      </div>
+
+      <div class="quote-ctl">
+        <button class="quote-arrow" id="quotePrev" aria-label="Previous testimonial">
+          <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+            <path d="M13 5H1M1 5L5 1M1 5L5 9" stroke="currentColor" stroke-width="1"/>
+          </svg>
+        </button>
+        <div class="quote-dots" id="quoteDots" role="tablist" aria-label="Testimonials"></div>
+        <button class="quote-arrow" id="quoteNext" aria-label="Next testimonial">
+          <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+            <path d="M1 5h12M13 5L9 1M13 5L9 9" stroke="currentColor" stroke-width="1"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <div class="tile-band" aria-hidden="true"></div>
+
+  <!-- ============================================================
+       RESERVATION
+       ============================================================ -->
+  <section class="section reserve" id="reserve">
+    <div class="reserve__bg">
+      <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&amp;fit=crop&amp;w=1900&amp;q=80"
+           alt="" aria-hidden="true" loading="lazy" decoding="async" data-parallax="0.12" />
+    </div>
+
+    <div class="container">
+      <div class="reserve__inner">
+        <div class="reserve__intro">
+          <div class="sec-head" data-reveal>
+            <span class="label">07 — Reservations <span class="tamil">முன்பதிவு</span></span>
+          </div>
+          <h2 class="display" data-reveal style="--d:.08s">
+            Reserve <em>your table</em>.
+          </h2>
+          <p class="lede" data-reveal style="--d:.16s">
+            We hold twelve tables each evening, Wednesday through Sunday. For
+            parties larger than six, or for a private hire of the whole room,
+            please write to us directly.
+          </p>
+
+          <dl class="reserve__meta">
+            <div data-reveal style="--d:.22s">
+              <dt>Telephone</dt>
+              <dd><a href="tel:+914522345678">+91 452 234 5678</a></dd>
+            </div>
+            <div data-reveal style="--d:.28s">
+              <dt>Email</dt>
+              <dd><a href="mailto:vanakkam@marutham.madurai">vanakkam@marutham.madurai</a></dd>
+            </div>
+            <div data-reveal style="--d:.34s">
+              <dt>Address</dt>
+              <dd>
+                12 North Chitrai Street<br />Madurai 625001
+                <span class="tamil">மதுரை</span>
+              </dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="reserve__form">
+          <form class="form__grid" id="reserveForm" novalidate data-reveal style="--d:.2s">
+            <div class="field">
+              <label for="r-name">Full name</label>
+              <input id="r-name" name="name" type="text" placeholder="Your name" autocomplete="name" required />
+            </div>
+            <div class="field">
+              <label for="r-email">Email</label>
+              <input id="r-email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required />
+            </div>
+            <div class="field">
+              <label for="r-phone">Telephone</label>
+              <input id="r-phone" name="phone" type="tel" placeholder="+91" autocomplete="tel" />
+            </div>
+            <div class="field">
+              <label for="r-guests">Guests</label>
+              <select id="r-guests" name="guests" required>
+                <option value="" disabled selected>Select</option>
+                <option>1 guest</option>
+                <option>2 guests</option>
+                <option>3 guests</option>
+                <option>4 guests</option>
+                <option>5 guests</option>
+                <option>6 guests</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="r-date">Date</label>
+              <input id="r-date" name="date" type="date" required />
+            </div>
+            <div class="field">
+              <label for="r-time">Time</label>
+              <select id="r-time" name="time" required>
+                <option value="" disabled selected>Select</option>
+                <option>18:30</option>
+                <option>19:00</option>
+                <option>19:30</option>
+                <option>20:00</option>
+                <option>20:30</option>
+                <option>21:00</option>
+              </select>
+            </div>
+            <div class="field field--full">
+              <label for="r-notes">Dietary requirements or occasion</label>
+              <textarea id="r-notes" name="notes" rows="1" placeholder="Allergies, celebrations, anything we should know"></textarea>
+            </div>
+            <div class="form__submit">
+              <button type="submit" class="btn btn--solid btn--block magnetic">
+                <span>Request Reservation</span>
+                <span class="btn__arrow" aria-hidden="true">→</span>
+              </button>
+            </div>
+            <p class="form__fine">
+              Requests are confirmed by email within one working day. The tasting
+              menu is served to the whole table.
+            </p>
+          </form>
+
+          <div class="form__success" id="formSuccess" role="status" aria-live="polite">
+            <h3><span class="tamil">நன்றி</span>Thank you — your request is with us.</h3>
+            <p id="formSuccessText">We will confirm your table by email within one working day.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand-col">
+        <span class="footer__brand">MARUTHAM</span>
+        <span class="footer__brand-tamil">மருதம்</span>
+        <p class="footer__brand-sub">
+          A vegetal dining house on North Chitrai Street, Madurai. Nine courses,
+          one hectare along the Vaigai, and a menu rewritten every morning.
+        </p>
+      </div>
+
+      <div>
+        <h4>Visit</h4>
+        <address>
+          12 North Chitrai Street<br />
+          Madurai 625001, Tamil Nadu<br />
+          <a href="tel:+914522345678">+91 452 234 5678</a><br />
+          <a href="mailto:vanakkam@marutham.madurai">vanakkam@marutham.madurai</a>
+        </address>
+      </div>
+
+      <div>
+        <h4>Hours</h4>
+        <address>
+          Wednesday — Sunday<br />
+          Dinner 18:30 — 23:00<br />
+          Last seating 21:00<br />
+          Closed Monday &amp; Tuesday
+        </address>
+      </div>
+
+      <div>
+        <h4>Follow</h4>
+        <div class="footer__links">
+          <a href="#" aria-label="Marutham on Instagram">Instagram</a>
+          <a href="#" aria-label="Marutham on Facebook">Facebook</a>
+          <a href="#" aria-label="Marutham on Pinterest">Pinterest</a>
+          <a href="#" aria-label="Marutham newsletter">Newsletter</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>© <span id="year">2024</span> Marutham — All rights reserved</span>
+      <a class="to-top" href="#hero">
+        <span>Back to top</span>
+        <svg width="10" height="14" viewBox="0 0 10 14" fill="none" aria-hidden="true">
+          <path d="M5 13V1M5 1L1 5M5 1l4 4" stroke="currentColor" stroke-width="1"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     LIGHTBOX
+     ============================================================ -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Gallery image viewer">
+  <button class="lb-btn lb-close" id="lbClose" aria-label="Close viewer">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+      <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="1"/>
+    </svg>
+  </button>
+  <button class="lb-btn lb-prev" id="lbPrev" aria-label="Previous image">
+    <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+      <path d="M13 5H1M1 5L5 1M1 5L5 9" stroke="currentColor" stroke-width="1"/>
+    </svg>
+  </button>
+  <img id="lbImage" src="" alt="" />
+  <button class="lb-btn lb-next" id="lbNext" aria-label="Next image">
+    <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+      <path d="M1 5h12M13 5L9 1M13 5L9 9" stroke="currentColor" stroke-width="1"/>
+    </svg>
+  </button>
+  <span class="lb-count" id="lbCount"></span>
+</div>
+
+<noscript>
+  <style>
+    [data-reveal],[data-mask],.gal{opacity:1 !important;transform:none !important;clip-path:none !important}
+    [data-mask] img{transform:none !important}
+    .preloader{display:none !important}
+    .hero__media,.hero__eyebrow,.hero__sub,.hero__actions,.hero__foot,.hero__gopuram{opacity:1 !important;transform:none !important}
+    .hero__title .li{transform:none !important}
+    body.is-locked{overflow:auto;height:auto}
+  </style>
+</noscript>
+
+<!-- Lenis (optional, graceful fallback to native scrolling) -->
