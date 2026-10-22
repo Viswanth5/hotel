@@ -16,27 +16,52 @@ import Reservation from './components/Reservation';
 import Footer from './components/Footer';
 import Lightbox from './components/Lightbox';
 import Menu from './components/Menu';
+import LocationsPage from './components/LocationsPage';
 
 export default function App() {
   const [isStuck, setIsStuck] = useState(false);
-  const [activeSection, setActiveSection] = useState('');
+  const [activeSection, setActiveSection] = useState(() => {
+    const h = typeof window !== 'undefined' ? window.location.hash : '';
+    if (h === '#menu') return 'menu';
+    if (h === '#locations' || h.startsWith('#locations')) return 'locations';
+    return '';
+  });
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(() => {
+    const h = typeof window !== 'undefined' ? window.location.hash : '';
+    if (h === '#menu') return 'menu';
+    if (h === '#locations' || h.startsWith('#locations')) return 'locations';
+    return 'home';
+  });
   const [scrollProgress, setScrollProgress] = useState(0);
   const [lightboxIndex, setLightboxIndex] = useState(null);
 
   // 1. Lenis smooth scrolling initialization
   useEffect(() => {
+    // Ensure body is never locked on mount
+    document.body.classList.remove('is-locked');
+    document.body.classList.add('is-ready');
+
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduceMotion) return;
+    if (reduceMotion) {
+      const handleNativeScroll = () => {
+        const y = window.pageYOffset;
+        setIsStuck(y > 60);
+        const docH = document.documentElement.scrollHeight - window.innerHeight;
+        setScrollProgress(docH > 0 ? Math.min(1, y / docH) : 0);
+      };
+      window.addEventListener('scroll', handleNativeScroll, { passive: true });
+      return () => window.removeEventListener('scroll', handleNativeScroll);
+    }
 
     const lenis = new Lenis({
-      duration: 1.15,
+      duration: 0.85,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
-      wheelMultiplier: 1,
-      touchMultiplier: 1.6,
-      lerp: 0.09,
+      wheelMultiplier: 1.0,
+      touchMultiplier: 1.0,
+      infinite: false,
+      autoResize: true,
     });
 
     window.__lenis = lenis;
@@ -48,6 +73,12 @@ export default function App() {
     }
     rafId = requestAnimationFrame(raf);
 
+    // Sync scroll state directly with Lenis RAF loop (zero desync, zero jank)
+    lenis.on('scroll', ({ scroll, progress }) => {
+      setIsStuck(scroll > 60);
+      setScrollProgress(progress);
+    });
+
     return () => {
       cancelAnimationFrame(rafId);
       lenis.destroy();
@@ -56,75 +87,125 @@ export default function App() {
   }, []);
 
   // 2. Navigation smooth scroll helper
-  const handleNavigate = useCallback((e, targetId) => {
-    if (e && e.preventDefault) e.preventDefault();
-    if (!targetId || targetId === '#') return;
+  const handleNavigate = useCallback(
+    (e, targetId) => {
+      if (e && e.preventDefault) e.preventDefault();
+      if (!targetId || targetId === '#') return;
 
-    const targetEl = document.querySelector(targetId);
-    if (!targetEl) return;
+      setIsMobileMenuOpen(false);
+      document.body.classList.remove('is-locked');
+      if (window.__lenis) window.__lenis.start();
 
-    setIsMobileMenuOpen(false);
-    document.body.classList.remove('is-locked');
-    if (window.__lenis) window.__lenis.start();
-
-    const offset = -70;
-    if (window.__lenis) {
-      window.__lenis.scrollTo(targetEl, { offset, duration: 1.35 });
-    } else {
-      const top = targetEl.getBoundingClientRect().top + window.pageYOffset + offset;
-      window.scrollTo({ top, behavior: 'smooth' });
-    }
-
-    window.history.replaceState(null, '', targetId);
-  }, []);
-
-  // 3. Scroll tracking: Progress bar, Nav stuck state, Parallax
-  useEffect(() => {
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let ticking = false;
-
-    const updateScrollUI = () => {
-      const y = window.pageYOffset;
-      setIsStuck(y > 60);
-
-      const docH = document.documentElement.scrollHeight - window.innerHeight;
-      const p = docH > 0 ? Math.min(1, y / docH) : 0;
-      setScrollProgress(p);
-
-      if (!reduceMotion) {
-        const parallaxEls = document.querySelectorAll('[data-parallax]');
-        const vh = window.innerHeight;
-        for (let i = 0; i < parallaxEls.length; i++) {
-          const el = parallaxEls[i];
-          const speed = parseFloat(el.dataset.parallax) || 0.12;
-          const r = el.getBoundingClientRect();
-          if (r.bottom < -vh * 0.4 || r.top > vh * 1.4) continue;
-          const mid = r.top + r.height / 2 - vh / 2;
-          el.style.transform = `translate3d(0,${(mid * speed).toFixed(2)}px,0)`;
+      // Navigate to Menu page
+      if (targetId === '#menu') {
+        setCurrentPage('menu');
+        setActiveSection('menu');
+        window.history.pushState(null, '', '#menu');
+        if (window.__lenis) {
+          window.__lenis.scrollTo(0, { duration: 0.8 });
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+        return;
+      }
+
+      // Navigate to Locations page
+      if (targetId === '#locations') {
+        setCurrentPage('locations');
+        setActiveSection('locations');
+        window.history.pushState(null, '', '#locations');
+        if (window.__lenis) {
+          window.__lenis.scrollTo(0, { duration: 0.8 });
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        return;
+      }
+
+      // If currently on subpage (Menu or Locations) and navigating to a home section
+      if (currentPage === 'menu' || currentPage === 'locations') {
+        if (targetId === '#hero') {
+          setCurrentPage('home');
+          setActiveSection('hero');
+          window.history.pushState(null, '', '#hero');
+          if (window.__lenis) window.__lenis.scrollTo(0, { duration: 0.8 });
+          else window.scrollTo({ top: 0, behavior: 'smooth' });
+          return;
+        }
+
+        // Check if anchor is an element on the current subpage
+        const localTarget = document.querySelector(targetId);
+        if (localTarget) {
+          if (window.__lenis) window.__lenis.scrollTo(localTarget, { offset: -70, duration: 0.85 });
+          else localTarget.scrollIntoView({ behavior: 'smooth' });
+          return;
+        }
+
+        setCurrentPage('home');
+        window.history.pushState(null, '', targetId);
+        setTimeout(() => {
+          const targetEl = document.querySelector(targetId);
+          if (targetEl) {
+            const offset = -70;
+            if (window.__lenis) {
+              window.__lenis.scrollTo(targetEl, { offset, duration: 0.9 });
+            } else {
+              const top = targetEl.getBoundingClientRect().top + window.pageYOffset + offset;
+              window.scrollTo({ top, behavior: 'smooth' });
+            }
+          } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+        }, 50);
+        return;
+      }
+
+      // On home page, smooth scroll to target section
+      const targetEl = document.querySelector(targetId);
+      if (!targetEl) return;
+
+      const offset = -70;
+      if (window.__lenis) {
+        window.__lenis.scrollTo(targetEl, { offset, duration: 0.95 });
+      } else {
+        const top = targetEl.getBoundingClientRect().top + window.pageYOffset + offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+
+      window.history.replaceState(null, '', targetId);
+    },
+    [currentPage]
+  );
+
+  // 3. Listen to browser history changes (Back / Forward navigation)
+  useEffect(() => {
+    const handleHash = () => {
+      const hash = window.location.hash;
+      if (hash === '#menu') {
+        setCurrentPage('menu');
+        setActiveSection('menu');
+        if (window.__lenis) window.__lenis.scrollTo(0, { duration: 0.8 });
+        else window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else if (hash === '#locations' || hash.startsWith('#locations')) {
+        setCurrentPage('locations');
+        setActiveSection('locations');
+        if (window.__lenis) window.__lenis.scrollTo(0, { duration: 0.8 });
+        else window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        setCurrentPage('home');
       }
     };
 
-    const onScroll = () => {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(() => {
-        updateScrollUI();
-        ticking = false;
-      });
-    };
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll, { passive: true });
-    updateScrollUI();
-
+    window.addEventListener('hashchange', handleHash);
+    window.addEventListener('popstate', handleHash);
+    handleHash();
     return () => {
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onScroll);
+      window.removeEventListener('hashchange', handleHash);
+      window.removeEventListener('popstate', handleHash);
     };
   }, []);
 
-  // 4. Scroll reveals (IntersectionObserver + Scroll fallback)
+  // 4. Scroll reveals (Pure IntersectionObserver - zero scroll-event reflows)
   useEffect(() => {
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const targets = document.querySelectorAll('[data-reveal], [data-mask], .gal');
@@ -143,7 +224,7 @@ export default function App() {
           }
         });
       },
-      { threshold: [0, 0.05, 0.1], rootMargin: '80px 0px 80px 0px' }
+      { threshold: [0, 0.05, 0.1], rootMargin: '100px 0px 100px 0px' }
     );
 
     targets.forEach((el) => {
@@ -151,35 +232,39 @@ export default function App() {
       io.observe(el);
     });
 
-    const checkVisibility = () => {
+    // Initial check for elements already in viewport
+    const checkImmediate = () => {
       const vh = window.innerHeight;
       targets.forEach((el) => {
         if (!el.classList.contains('is-visible')) {
           const rect = el.getBoundingClientRect();
-          if (rect.top < vh + 120 && rect.bottom > -120) {
+          if (rect.top < vh + 100 && rect.bottom > -100) {
             el.classList.add('is-visible');
           }
         }
       });
     };
 
-    checkVisibility();
-    const timer = setTimeout(checkVisibility, 600);
-    const timer2 = setTimeout(checkVisibility, 1800);
-    window.addEventListener('scroll', checkVisibility, { passive: true });
-    window.addEventListener('resize', checkVisibility, { passive: true });
+    checkImmediate();
+    const timer = setTimeout(checkImmediate, 350);
 
     return () => {
       io.disconnect();
       clearTimeout(timer);
-      clearTimeout(timer2);
-      window.removeEventListener('scroll', checkVisibility);
-      window.removeEventListener('resize', checkVisibility);
     };
-  }, []);
+  }, [currentPage]);
 
-  // 5. Scroll spy for active section
+  // 6. Scroll spy for active section
   useEffect(() => {
+    if (currentPage === 'menu') {
+      setActiveSection('menu');
+      return;
+    }
+    if (currentPage === 'locations') {
+      setActiveSection('locations');
+      return;
+    }
+
     const sectionIds = ['hero', 'stats', 'flavours', 'locations', 'experiences', 'story', 'reviews', 'milestones', 'cta'];
     const elements = sectionIds.map((id) => document.getElementById(id)).filter(Boolean);
 
@@ -198,9 +283,9 @@ export default function App() {
 
     elements.forEach((el) => spyObserver.observe(el));
     return () => spyObserver.disconnect();
-  }, []);
+  }, [currentPage]);
 
-  // 6. Magnetic buttons effect
+  // 7. Magnetic buttons effect
   useEffect(() => {
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const isFinePointer = window.matchMedia('(pointer: fine)').matches;
@@ -238,17 +323,17 @@ export default function App() {
     });
 
     return () => cleanups.forEach((fn) => fn());
-  }, []);
+  }, [currentPage]);
 
-  // 7. Image fallback handler
+  // 8. Image fallback handler
   useEffect(() => {
     const imgs = document.querySelectorAll('img');
     imgs.forEach((img) => {
       img.addEventListener('error', () => img.classList.add('img-fallback'), { once: true });
     });
-  }, []);
+  }, [currentPage]);
 
-  // 8. Mobile menu toggling & Escape key handler
+  // 9. Mobile menu toggling & Escape key handler
   const handleToggleMobileMenu = () => {
     setIsMobileMenuOpen((prev) => {
       const next = !prev;
@@ -271,11 +356,6 @@ export default function App() {
           document.body.classList.remove('is-locked');
           if (window.__lenis) window.__lenis.start();
         }
-        if (isMenuOpen) {
-          setIsMenuOpen(false);
-          document.body.classList.remove('is-locked');
-          if (window.__lenis) window.__lenis.start();
-        }
         if (lightboxIndex !== null) {
           setLightboxIndex(null);
         }
@@ -284,7 +364,7 @@ export default function App() {
 
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [isMobileMenuOpen, isMenuOpen, lightboxIndex]);
+  }, [isMobileMenuOpen, lightboxIndex]);
 
   return (
     <>
@@ -300,7 +380,7 @@ export default function App() {
 
       <Navbar
         isStuck={isStuck}
-        activeSection={activeSection}
+        activeSection={currentPage === 'menu' ? 'menu' : currentPage === 'locations' ? 'locations' : activeSection}
         isMobileMenuOpen={isMobileMenuOpen}
         onToggleMobileMenu={handleToggleMobileMenu}
         onNavigate={handleNavigate}
@@ -312,35 +392,43 @@ export default function App() {
       />
 
       <main id="main">
-        {/* 1. Hero Section */}
-        <Hero onNavigate={handleNavigate} />
+        {currentPage === 'menu' ? (
+          <Menu onNavigate={handleNavigate} />
+        ) : currentPage === 'locations' ? (
+          <LocationsPage onNavigate={handleNavigate} />
+        ) : (
+          <>
+            {/* 1. Hero Section */}
+            <Hero onNavigate={handleNavigate} />
 
-        {/* 2. Brand Statistics */}
-        <BrandStats />
+            {/* 2. Brand Statistics */}
+            <BrandStats />
 
-        {/* 3. Signature Flavours */}
-        <SignatureFlavours onOpenFullMenu={() => setIsMenuOpen(true)} />
+            {/* 3. Signature Flavours */}
+            <SignatureFlavours onOpenFullMenu={(e) => handleNavigate(e, '#menu')} />
 
-        {/* 4. Find Your Nearest Restaurant */}
-        <Locations />
+            {/* 4. Find Your Nearest Restaurant */}
+            <Locations onNavigate={handleNavigate} />
 
-        {/* 5. More Than Dining */}
-        <MoreThanDining />
+            {/* 5. More Than Dining */}
+            <MoreThanDining />
 
-        {/* 6. Our Story & Heritage */}
-        <Story onNavigate={handleNavigate} />
+            {/* 6. Our Story & Heritage */}
+            <Story onNavigate={handleNavigate} />
 
-        {/* 7. What Our Guests Say */}
-        <Testimonials />
+            {/* 7. What Our Guests Say */}
+            <Testimonials />
 
-        {/* 8. Moments & Milestones */}
-        <Gallery
-          onOpenLightbox={(idx) => setLightboxIndex(idx)}
-          onNavigate={handleNavigate}
-        />
+            {/* 8. Moments & Milestones */}
+            <Gallery
+              onOpenLightbox={(idx) => setLightboxIndex(idx)}
+              onNavigate={handleNavigate}
+            />
 
-        {/* 9. Closing Call to Action */}
-        <Reservation onNavigate={handleNavigate} />
+            {/* 9. Closing Call to Action */}
+            <Reservation onNavigate={handleNavigate} />
+          </>
+        )}
       </main>
 
       {/* 10. Footer */}
@@ -357,11 +445,6 @@ export default function App() {
           setLightboxIndex((prev) => (prev + 1) % galleryItems.length)
         }
         items={galleryItems}
-      />
-
-      <Menu
-        isOpen={isMenuOpen}
-        onClose={() => setIsMenuOpen(false)}
       />
     </>
   );

@@ -3,7 +3,7 @@ import React from 'react';
 export default function MobileMenu({ isOpen, onNavigate }) {
   const links = [
     { href: '#hero', label: 'Home' },
-    { href: '#flavours', label: 'Menu & Flavours' },
+    { href: '#menu', label: 'Menu' },
     { href: '#locations', label: 'Restaurant Locations' },
     { href: '#experiences', label: 'More Than Dining' },
     { href: '#story', label: 'Our Story & Heritage' },

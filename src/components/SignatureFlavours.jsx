@@ -63,7 +63,9 @@ export default function SignatureFlavours({ onOpenFullMenu }) {
       <section className="section section--tight" id="flavours">
         <div className="container">
           <div className="sec-head" data-reveal>
-            <span className="label">03 — Signature Flavours <span className="tamil">சுவை அனுபவம்</span></span>
+            <span className="label">
+              03 — Signature Flavours <span className="tamil">சுவை அனுபவம்</span>
+            </span>
             <span className="rule" aria-hidden="true"></span>
           </div>
 
@@ -71,41 +73,61 @@ export default function SignatureFlavours({ onOpenFullMenu }) {
             A Celebration of <em>Authentic Flavours</em>
           </h2>
 
-          <p className="lede" data-reveal style={{ '--d': '.14s', marginTop: '1rem', marginBottom: '2.5rem' }}>
+          <p className="lede flavours__lede" data-reveal style={{ '--d': '.14s' }}>
             From comforting South Indian classics to delicious contemporary favourites, every dish celebrates our love for great food, fresh ingredients, and time-honoured recipes.
           </p>
 
-          <div className="dishes__list">
-            {categories.map((cat) => (
-              <article key={cat.num} className="dish" data-reveal>
-                <div className="dish__media arch-wrap">
-                  <div className="arch">
-                    <img
-                      src={cat.image}
-                      alt={cat.alt}
-                      loading="lazy"
-                      decoding="async"
-                    />
+          <div className="flavours__bento">
+            {categories.map((cat, idx) => {
+              const isFeature = cat.num === '01';
+              const isMedium = cat.num === '02';
+              const cardType = isFeature
+                ? 'bento-card--feature'
+                : isMedium
+                ? 'bento-card--medium'
+                : 'bento-card--supporting';
+
+              return (
+                <article
+                  key={cat.num}
+                  className={`bento-card bento-card--${cat.num} ${cardType}`}
+                  data-reveal
+                  style={{ '--d': `${0.06 * (idx + 1)}s` }}
+                >
+                  <div className="bento-card__media arch-wrap">
+                    <div className="arch">
+                      <img
+                        src={cat.image}
+                        alt={cat.alt}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
                   </div>
-                </div>
-                <div className="dish__body">
-                  <span className="dish__num">{cat.num}</span>
-                  <h3 className="dish__name">
-                    {cat.name}
-                    <span className="dish__tamil">{cat.tamil}</span>
-                  </h3>
-                  <p className="dish__desc">{cat.desc}</p>
-                  <ul className="tags">
-                    {cat.tags.map((tag) => (
-                      <li key={tag}>{tag}</li>
-                    ))}
-                  </ul>
-                </div>
-              </article>
-            ))}
+                  <div className="bento-card__body">
+                    <div className="bento-card__meta">
+                      <span className="bento-card__num">{cat.num}</span>
+                      {isFeature && (
+                        <span className="bento-card__badge">Signature Anchor</span>
+                      )}
+                    </div>
+                    <h3 className="bento-card__name">
+                      {cat.name}
+                      <span className="bento-card__tamil">{cat.tamil}</span>
+                    </h3>
+                    <p className="bento-card__desc">{cat.desc}</p>
+                    <ul className="tags">
+                      {cat.tags.map((tag) => (
+                        <li key={tag}>{tag}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </article>
+              );
+            })}
           </div>
 
-          <div style={{ textAlign: 'center', marginTop: 'clamp(3rem, 6vw, 4.5rem)' }} data-reveal>
+          <div className="flavours__cta" data-reveal>
             <button
               type="button"
               className="btn btn--solid magnetic"

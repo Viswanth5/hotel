@@ -5,34 +5,28 @@ export default function Preloader() {
   const [isRemoved, setIsRemoved] = useState(false);
 
   useEffect(() => {
+    // Ensure body is never locked or frozen on page load
+    document.body.classList.remove('is-locked');
+    document.body.classList.add('is-ready');
+
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const body = document.body;
+    const hasVisited = sessionStorage.getItem('tc_visited');
 
     const releasePage = () => {
-      body.classList.remove('is-locked');
-      body.classList.add('is-ready');
       setIsDone(true);
+      sessionStorage.setItem('tc_visited', '1');
       setTimeout(() => {
         setIsRemoved(true);
-      }, 1100);
+      }, 700);
     };
 
-    if (reduceMotion) {
+    if (reduceMotion || hasVisited) {
       releasePage();
       return;
     }
 
-    const timer1 = setTimeout(releasePage, 1550);
-    const timer2 = setTimeout(() => {
-      if (document.body.classList.contains('is-locked')) {
-        releasePage();
-      }
-    }, 4000);
-
-    return () => {
-      clearTimeout(timer1);
-      clearTimeout(timer2);
-    };
+    const timer = setTimeout(releasePage, 750);
+    return () => clearTimeout(timer);
   }, []);
 
   if (isRemoved) return null;
@@ -42,6 +36,7 @@ export default function Preloader() {
       className={`preloader ${isDone ? 'is-done' : ''}`}
       id="preloader"
       aria-hidden="true"
+      style={isDone ? { pointerEvents: 'none' } : undefined}
     >
       <div className="preloader__inner">
         <div className="preloader__mark">THE TEMPLE CITY</div>

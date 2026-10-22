@@ -8,7 +8,7 @@ export default function Navbar({
   onNavigate
 }) {
   const navItems = [
-    { href: '#flavours', label: 'Menu', id: 'flavours' },
+    { href: '#menu', label: 'Menu', id: 'menu' },
     { href: '#locations', label: 'Locations', id: 'locations' },
     { href: '#experiences', label: 'Experiences', id: 'experiences' },
     { href: '#story', label: 'Our Story', id: 'story' },

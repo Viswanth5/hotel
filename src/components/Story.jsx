@@ -3,13 +3,13 @@ import React from 'react';
 export default function Story({ onNavigate }) {
   return (
     <>
-      <section className="section" id="story">
+      <section className="section section--dark-blue" id="story">
         <div className="container">
           <div className="sec-head" data-reveal>
             <span className="label">
               06 — Our Story &amp; Heritage <span className="tamil">பாரம்பரியம்</span>
-              <span className="dot" aria-hidden="true" style={{ width: 4, height: 4, background: 'var(--turmeric)', display: 'inline-block', transform: 'rotate(45deg)' }}></span>
-              <span>ROOTED IN TRADITION, GROWING WITH TIME</span>
+              <span className="dot" aria-hidden="true" style={{ width: 4, height: 4, background: 'var(--turmeric)', display: 'inline-block', transform: 'rotate(45deg)', marginInline: '0.4rem' }}></span>
+              <span className="label__tagline">ROOTED IN TRADITION, GROWING WITH TIME</span>
             </span>
             <span className="rule" aria-hidden="true"></span>
           </div>
@@ -62,7 +62,7 @@ export default function Story({ onNavigate }) {
 
               <div data-reveal style={{ marginTop: '2.2rem', '--d': '.4s' }}>
                 <a
-                  className="btn btn--dark magnetic"
+                  className="btn btn--outline-gold magnetic"
                   href="#story"
                   onClick={(e) => onNavigate && onNavigate(e, '#story')}
                 >

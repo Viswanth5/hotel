@@ -4,7 +4,7 @@ export default function Footer({ onNavigate }) {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="footer" id="footer">
+    <footer className="footer footer--dark-blue" id="footer">
       <div className="container">
         <div className="footer__grid">
           <div className="footer__brand-col">
@@ -31,7 +31,7 @@ export default function Footer({ onNavigate }) {
             <h4>Quick Links</h4>
             <div className="footer__links">
               <a href="#hero" onClick={(e) => onNavigate(e, '#hero')}>Home</a>
-              <a href="#flavours" onClick={(e) => onNavigate(e, '#flavours')}>Menu</a>
+              <a href="#menu" onClick={(e) => onNavigate(e, '#menu')}>Menu</a>
               <a href="#locations" onClick={(e) => onNavigate(e, '#locations')}>Locations</a>
               <a href="#milestones" onClick={(e) => onNavigate(e, '#milestones')}>Events &amp; Gallery</a>
               <a href="#story" onClick={(e) => onNavigate(e, '#story')}>About Us</a>

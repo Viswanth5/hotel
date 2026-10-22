@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Locations() {
+export default function Locations({ onNavigate }) {
   const branches = [
     {
       id: 'mattuthavani',
@@ -54,10 +54,12 @@ export default function Locations() {
 
   return (
     <>
-      <section className="section" id="locations">
+      <section className="section section--dark-blue" id="locations">
         <div className="container">
           <div className="sec-head" data-reveal>
-            <span className="label">04 — Locations <span className="tamil">கிளைகள்</span></span>
+            <span className="label">
+              04 — Locations <span className="tamil">கிளைகள்</span>
+            </span>
             <span className="rule" aria-hidden="true"></span>
           </div>
 
@@ -65,33 +67,20 @@ export default function Locations() {
             Good Food, <em>Closer to You</em>
           </h2>
 
-          <p className="lede" data-reveal style={{ '--d': '.14s', marginTop: '1rem', marginBottom: '3rem' }}>
+          <p className="lede locations__lede" data-reveal style={{ '--d': '.14s' }}>
             Wherever your journey takes you, a Temple City dining experience is never too far away. Explore our restaurant locations and discover the flavours you love.
           </p>
 
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-              gap: 'clamp(1.8rem, 3.5vw, 2.8rem)',
-            }}
-          >
+          <div className="locations__grid">
             {branches.map((b, idx) => (
               <article
                 key={b.id}
+                className="location-card"
                 data-reveal
-                style={{
-                  '--d': `${(idx * 0.08).toFixed(2)}s`,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  background: 'rgba(251,246,236,0.5)',
-                  padding: 'clamp(1.2rem, 2vw, 1.8rem)',
-                  borderRadius: '3px',
-                  border: '1px solid var(--line-d)',
-                }}
+                style={{ '--d': `${(idx * 0.08).toFixed(2)}s` }}
               >
-                <div className="arch-wrap" style={{ marginBottom: '1.4rem' }}>
-                  <div className="arch" style={{ aspectRatio: '16/10' }}>
+                <div className="location-card__media arch-wrap">
+                  <div className="arch">
                     <img
                       src={b.image}
                       alt={`Temple City - ${b.name} branch`}
@@ -101,50 +90,22 @@ export default function Locations() {
                   </div>
                 </div>
 
-                <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-                  <h3
-                    className="display"
-                    style={{
-                      fontSize: 'clamp(1.35rem, 2vw, 1.7rem)',
-                      color: 'var(--maroon-ink)',
-                      marginBottom: '.3rem',
-                    }}
-                  >
+                <div className="location-card__body">
+                  <h3 className="display location-card__name">
                     {b.name}
-                    <span
-                      className="tamil"
-                      style={{
-                        display: 'block',
-                        fontSize: '.55em',
-                        color: 'var(--maroon)',
-                        marginTop: '.2rem',
-                        fontWeight: 500,
-                      }}
-                    >
-                      {b.tamil}
-                    </span>
+                    <span className="tamil location-card__tamil">{b.tamil}</span>
                   </h3>
 
-                  <address
-                    style={{
-                      fontStyle: 'normal',
-                      fontSize: '.88rem',
-                      lineHeight: '1.65',
-                      color: 'rgba(30,18,12,0.68)',
-                      marginBlock: '0.8rem 1.6rem',
-                      flex: 1,
-                    }}
-                  >
+                  <address className="location-card__address">
                     {b.address}
                   </address>
 
-                  <div>
+                  <div className="location-card__action">
                     <a
-                      className="btn btn--dark magnetic"
+                      className="btn btn--outline-gold magnetic"
                       href={b.mapUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      style={{ width: '100%' }}
                     >
                       <span>Get Directions</span>
                       <span className="btn__arrow" aria-hidden="true">→</span>
@@ -155,21 +116,20 @@ export default function Locations() {
             ))}
           </div>
 
-          <div style={{ textAlign: 'center', marginTop: 'clamp(3rem, 6vw, 4.5rem)' }} data-reveal>
+          <div className="locations__cta" data-reveal>
             <a
               className="btn btn--solid magnetic"
-              href="https://maps.google.com/?q=Hotel+Temple+City+Madurai"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#locations"
+              onClick={(e) => onNavigate && onNavigate(e, '#locations')}
             >
-              <span>Explore All Locations</span>
+              <span>Explore All 16+ Branches, Stays &amp; EV Stations</span>
               <span className="btn__arrow" aria-hidden="true">→</span>
             </a>
           </div>
         </div>
       </section>
 
-      <div className="tile-band" aria-hidden="true"></div>
+      <div className="tile-band tile-band--dark-blue" aria-hidden="true"></div>
     </>
   );
 }
