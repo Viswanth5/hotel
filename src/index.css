@@ -620,290 +620,281 @@ body.is-ready .hero__foot{opacity:1}
 }
 
 /* ============================================================
-   11. SIGNATURE FLAVOURS (PREMIUM EDITORIAL BENTO GRID)
+   11. SIGNATURE FLAVOURS (LUXURY COMPACT BENTO GRID)
    ============================================================ */
 #flavours {
-  padding-block: clamp(2.8rem, 5vh, 4.4rem);
+  padding-block: clamp(1.4rem, 2.5vh, 2.3rem);
+  position: relative;
 }
+
+#flavours .flavours__header-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: clamp(1.5rem, 3vw, 3rem);
+  margin-top: clamp(0.35rem, 0.7vw, 0.6rem);
+  margin-bottom: clamp(0.85rem, 1.4vh, 1.15rem);
+}
+
 #flavours .sec-title {
-  margin-top: clamp(0.75rem, 1.6vw, 1.25rem);
+  margin-top: 0;
+  font-size: clamp(1.65rem, 2.4vw, 2.3rem);
+  line-height: 1.1;
+  max-width: 20ch;
+  flex-shrink: 0;
 }
+
 #flavours .flavours__lede {
-  margin-top: 0.65rem;
-  margin-bottom: clamp(1.8rem, 3vw, 2.4rem);
-  max-width: 66ch;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: clamp(0.84rem, 0.9vw, 0.93rem);
+  line-height: 1.48;
+  color: rgba(30, 18, 12, 0.72);
+  max-width: 50ch;
 }
 
-#flavours .flavours__bento {
+/* Bento Container */
+#flavours .flavours__luxury-bento {
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: clamp(1.1rem, 1.8vw, 1.8rem);
-  margin-top: clamp(1.5rem, 2.5vw, 2.2rem);
+  grid-template-columns: 1.15fr 1.85fr;
+  gap: clamp(0.75rem, 1vw, 0.95rem);
+  align-items: stretch;
 }
 
-/* Bento Card Base */
-.bento-card {
+.flavours__bento-left {
+  display: flex;
+}
+
+.flavours__bento-right {
   display: flex;
   flex-direction: column;
-  background: rgba(244, 234, 218, 0.45);
-  border: 1px solid rgba(92, 26, 24, 0.14);
-  border-radius: 4px;
-  padding: clamp(1.1rem, 1.6vw, 1.5rem);
+  gap: clamp(0.75rem, 1vw, 0.95rem);
+}
+
+.flavours__bento-row--top {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: clamp(0.75rem, 1vw, 0.95rem);
+  height: 215px;
+}
+
+.flavours__bento-row--bottom {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(0.75rem, 1vw, 0.95rem);
+  height: 215px;
+}
+
+/* Luxury Card Base */
+.lux-card {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+  border-radius: 16px;
   overflow: hidden;
+  cursor: pointer;
+  padding: clamp(0.9rem, 1.25vw, 1.25rem);
+  background: var(--maroon-ink);
+  box-shadow: 0 4px 18px -4px rgba(62, 16, 15, 0.1);
   transition: transform 0.45s var(--ease),
-              box-shadow 0.45s var(--ease),
-              border-color 0.45s var(--ease),
-              background 0.45s var(--ease);
+              box-shadow 0.45s var(--ease);
+  user-select: none;
+  opacity: 1 !important;
 }
 
-.bento-card:hover {
+.flavours__bento-left .lux-card--hero {
+  flex: 1;
+  width: 100%;
+  min-height: 445px;
+}
+
+.lux-card:hover {
   transform: translateY(-4px);
-  background: rgba(244, 234, 218, 0.78);
-  border-color: rgba(92, 26, 24, 0.32);
-  box-shadow: 0 16px 36px -12px rgba(92, 26, 24, 0.16);
+  box-shadow: 0 18px 42px -10px rgba(62, 16, 15, 0.35),
+              0 0 0 1px rgba(201, 138, 43, 0.35);
 }
 
-/* Card Media & Temple Arch Frame */
-.bento-card__media {
-  margin-top: 0.4rem;
-  margin-bottom: 1.1rem;
-  width: 100%;
+/* Card Background Media & Scrim */
+.lux-card__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
 }
-.bento-card__media .arch {
-  aspect-ratio: 16 / 10.5;
-  width: 100%;
-  max-height: 220px;
-}
-.bento-card__media img {
+
+.lux-card__bg img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 1.2s var(--ease);
-}
-.bento-card:hover .bento-card__media img {
-  transform: scale(1.06);
+  display: block;
+  transition: transform 0.65s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: transform;
 }
 
-/* Card Content */
-.bento-card__body {
+/* Specific focal points so the food subject is perfectly centered and visible */
+.lux-card--01 .lux-card__bg img {
+  object-position: center center;
+}
+.lux-card--02 .lux-card__bg img {
+  object-position: center 60%;
+}
+.lux-card--03 .lux-card__bg img {
+  object-position: center 50%;
+}
+.lux-card--04 .lux-card__bg img {
+  object-position: center 50%;
+}
+.lux-card--05 .lux-card__bg img {
+  object-position: center 55%;
+}
+.lux-card--06 .lux-card__bg img {
+  object-position: center 65%;
+}
+
+.lux-card:hover .lux-card__bg img {
+  transform: scale(1.03);
+}
+
+/* Subtle, unobtrusive scrim: clear in upper 60%, gentle fade only behind text */
+.lux-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(14, 7, 5, 0.78) 0%,
+    rgba(14, 7, 5, 0.32) 32%,
+    transparent 62%
+  );
+  transition: background 0.45s var(--ease);
+}
+
+.lux-card:hover .lux-card__overlay {
+  background: linear-gradient(
+    to top,
+    rgba(32, 10, 8, 0.84) 0%,
+    rgba(32, 10, 8, 0.36) 36%,
+    transparent 65%
+  );
+}
+
+/* Essential Caption Only */
+.lux-card__caption {
+  position: relative;
+  z-index: 2;
+  margin-top: auto;
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
+  gap: 0.2rem;
 }
 
-.bento-card__meta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 0.45rem;
-}
-
-.bento-card__num {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+.lux-card__name {
   font-family: var(--serif);
-  font-size: 0.85rem;
-  letter-spacing: 0.2em;
-  color: var(--turmeric);
-}
-.bento-card__num::before {
-  content: '';
-  width: 5px;
-  height: 5px;
-  background: var(--maroon);
-  transform: rotate(45deg);
-}
-
-.bento-card__badge {
-  font-family: var(--sans);
-  font-size: 0.54rem;
-  font-weight: 500;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--maroon);
-  background: rgba(92, 26, 24, 0.08);
-  border: 1px solid rgba(92, 26, 24, 0.18);
-  padding: 0.2rem 0.55rem;
-  border-radius: 2px;
-}
-
-.bento-card__name {
-  font-family: var(--serif);
-  font-size: clamp(1.3rem, 1.6vw, 1.6rem);
   font-weight: 400;
-  line-height: 1.18;
-  color: var(--maroon-ink);
+  color: #fff;
   letter-spacing: -0.01em;
-  transition: color 0.4s var(--ease);
-}
-.bento-card:hover .bento-card__name {
-  color: var(--maroon);
+  line-height: 1.15;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.45rem;
+  transition: color 0.3s var(--ease);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.65);
 }
 
-.bento-card__tamil {
-  display: block;
+.lux-card:hover .lux-card__name {
+  color: var(--sand);
+}
+
+.lux-card__tamil {
   font-family: var(--tamil);
-  font-size: 0.48em;
-  color: var(--maroon);
-  margin-top: 0.25rem;
-  font-weight: 500;
+  font-size: 0.64em;
+  color: var(--turmeric);
+  font-weight: 400;
   letter-spacing: 0.02em;
 }
 
-.bento-card__desc {
-  margin-top: 0.6rem;
-  font-size: 0.88rem;
-  line-height: 1.55;
-  color: rgba(30, 18, 12, 0.72);
-  flex-grow: 1;
+.lux-card--hero .lux-card__name {
+  font-size: clamp(1.4rem, 1.8vw, 1.85rem);
 }
 
-/* Card Tags */
-.bento-card .tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem;
-  margin-top: 1rem;
-  padding-top: 0.75rem;
-  border-top: 1px dashed rgba(92, 26, 24, 0.16);
-}
-.bento-card .tags li {
-  font-size: 0.54rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  padding: 0.28rem 0.62rem;
-  border: 1px solid rgba(92, 26, 24, 0.2);
-  border-radius: 2px;
-  color: var(--maroon);
-  background: rgba(255, 255, 255, 0.45);
-  transition: background 0.35s var(--ease), color 0.35s var(--ease), border-color 0.35s var(--ease);
-}
-.bento-card:hover .tags li {
-  border-color: rgba(92, 26, 24, 0.35);
-}
-.bento-card .tags li:hover {
-  background: var(--maroon);
-  color: var(--sand);
-  border-color: var(--maroon);
+.lux-card--mid .lux-card__name {
+  font-size: clamp(1.15rem, 1.35vw, 1.4rem);
 }
 
-/* Bento Sizing Breakdown (Desktop >= 1024px) */
-@media (min-width: 1024px) {
-  /* Row 1: South Indian Classics (6 cols) | Dosa (3 cols) | Traditional Meals (3 cols) */
-  .bento-card--feature {
-    grid-column: span 6;
-    display: grid;
-    grid-template-columns: 1.08fr 1fr;
-    gap: clamp(1.2rem, 1.8vw, 1.8rem);
-    align-items: center;
-  }
-  .bento-card--feature .bento-card__media {
-    margin: 0;
-    height: 100%;
-    display: flex;
-    align-items: center;
-  }
-  .bento-card--feature .bento-card__media .arch {
-    aspect-ratio: 4 / 3.4;
-    max-height: 290px;
-  }
-  .bento-card--feature .bento-card__name {
-    font-size: clamp(1.5rem, 2vw, 1.85rem);
-  }
-  .bento-card--feature .bento-card__desc {
-    max-width: 36ch;
-  }
-
-  .bento-card--02 {
-    grid-column: span 3;
-  }
-  .bento-card--03 {
-    grid-column: span 3;
-  }
-
-  /* Row 2: Starters (4 cols) | Beverages (4 cols) | Sweet Endings (4 cols) */
-  .bento-card--04 {
-    grid-column: span 4;
-  }
-  .bento-card--05 {
-    grid-column: span 4;
-  }
-  .bento-card--06 {
-    grid-column: span 4;
-  }
-  .bento-card--04 .bento-card__media .arch,
-  .bento-card--05 .bento-card__media .arch,
-  .bento-card--06 .bento-card__media .arch {
-    aspect-ratio: 16 / 9.5;
-    max-height: 180px;
-  }
+.lux-card--compact .lux-card__name {
+  font-size: clamp(1.02rem, 1.15vw, 1.22rem);
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.12rem;
 }
 
 /* Tablet (641px - 1023px) */
 @media (min-width: 641px) and (max-width: 1023px) {
-  #flavours .flavours__bento {
+  #flavours .flavours__header-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  #flavours .flavours__luxury-bento {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+  .flavours__bento-left .lux-card--hero {
+    height: 260px;
+    min-height: auto;
+  }
+  .flavours__bento-row--top {
     grid-template-columns: repeat(2, 1fr);
-    gap: 1.4rem;
+    height: 210px;
   }
-  .bento-card--feature {
-    grid-column: 1 / -1;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    align-items: center;
-  }
-  .bento-card--feature .bento-card__media {
-    margin: 0;
-  }
-  .bento-card--feature .bento-card__media .arch {
-    aspect-ratio: 4 / 3.2;
-    max-height: 260px;
-  }
-  .bento-card--02,
-  .bento-card--03,
-  .bento-card--04,
-  .bento-card--05,
-  .bento-card--06 {
-    grid-column: auto;
-  }
-  .bento-card--06:last-child:nth-child(odd) {
-    grid-column: 1 / -1;
+  .flavours__bento-row--bottom {
+    grid-template-columns: repeat(3, 1fr);
+    height: 195px;
   }
 }
 
 /* Mobile (<= 640px) */
 @media (max-width: 640px) {
-  #flavours .flavours__bento {
-    grid-template-columns: 1fr;
-    gap: 1.3rem;
+  #flavours {
+    padding-block: clamp(1.8rem, 4vh, 2.4rem);
   }
-  .bento-card--feature {
-    display: flex;
+  #flavours .flavours__header-row {
     flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+    margin-bottom: 0.85rem;
   }
-  .bento-card--feature .bento-card__media {
-    margin-top: 0.4rem;
-    margin-bottom: 1.1rem;
+  #flavours .flavours__luxury-bento {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
   }
-  .bento-card--feature,
-  .bento-card--02,
-  .bento-card--03,
-  .bento-card--04,
-  .bento-card--05,
-  .bento-card--06 {
-    grid-column: 1 / -1;
+  .flavours__bento-left .lux-card--hero {
+    height: 210px !important;
+    min-height: auto !important;
   }
-  .bento-card__media .arch {
-    aspect-ratio: 16 / 10;
-    max-height: 220px;
+  .flavours__bento-row--top,
+  .flavours__bento-row--bottom {
+    grid-template-columns: 1fr;
+    height: auto;
+    gap: 0.75rem;
+  }
+  .lux-card {
+    height: 180px !important;
+    padding: 1rem;
+  }
+  .lux-card__name {
+    font-size: 1.25rem !important;
+    flex-direction: row !important;
+    align-items: baseline !important;
+    gap: 0.4rem !important;
   }
 }
 
 #flavours .flavours__cta {
   text-align: center;
-  margin-top: clamp(2.2rem, 3.8vw, 3.2rem);
+  margin-top: clamp(1.1rem, 1.8vh, 1.5rem);
 }
 
 /* ============================================================
