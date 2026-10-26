@@ -1,0 +1,320 @@
+/* ============================================================
+   TEMPLE CITY — HERO COMPONENT · "VANAKKAM / THE THRESHOLD"
+   Full-bleed cinematic carousel. All styles scoped under
+   .tc-hero / #tcHero — nothing leaks globally.
+   ============================================================ */
+
+.tc-hero * {
+  box-sizing: border-box;
+}
+
+.tc-hero {
+  /* ---- brand tokens (align with the existing site palette here) ---- */
+  --tc-ink: #100b07;
+  --tc-bone: #f2e9d8;
+  --tc-bone-70: rgba(242,233,216,.72);
+  --tc-bone-45: rgba(242,233,216,.45);
+  --tc-bone-30: rgba(242,233,216,.30);
+  --tc-bone-15: rgba(242,233,216,.15);
+  --tc-hairline: rgba(242,233,216,.16);
+  --tc-accent: #c8452c;               /* kumkum — the period + the live progress only */
+  --tc-serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --tc-sans: "Figtree", "Avenir Next", Helvetica, Arial, sans-serif;
+  --tc-tamil: "Noto Serif Tamil", "Nirmala UI", "Latha", serif;
+  --tc-ease: cubic-bezier(.19, 1, .22, 1);
+  --tc-mx: clamp(1.4rem, 4.2vw, 4.2rem);
+  --tc-dur: 6s;                        /* keep in sync with DURATION in the script */
+
+  position: relative;
+  height: 100vh; height: 100svh;
+  min-height: 640px;
+  overflow: hidden;
+  background: var(--tc-ink);
+  color: var(--tc-bone);
+  font-family: var(--tc-sans);
+}
+
+/* ---------- full-bleed photographic stage ---------- */
+
+.tc-stage {
+  position: absolute; inset: 0; z-index: 1;
+  overflow: hidden;
+  background: #221812;
+  touch-action: pan-y;
+}
+
+.tc-slide {
+  position: absolute; inset: 0; margin: 0;
+  opacity: 0; z-index: 1;
+  background: #221812;
+  transition: opacity 1.8s ease;       /* the slow cinematic crossfade */
+  will-change: opacity;
+}
+.tc-slide.is-active { opacity: 1; z-index: 2; }
+
+.tc-slide img {
+  display: block; width: 100%; height: 100%;
+  object-fit: cover;
+  pointer-events: none; user-select: none;
+  transform: translateZ(0);
+  filter: saturate(1.04) contrast(1.02) brightness(.94);
+  will-change: transform;
+}
+.tc-hero[data-entered] .tc-slide.is-active img {
+  animation: tcSettle var(--tc-dur) cubic-bezier(.22, 1, .36, 1) forwards;
+}
+@keyframes tcSettle { from { transform: scale(1.04) translateZ(0); } to { transform: scale(1) translateZ(0); } }
+
+/* ---------- adaptive scrim (breathes with each slide's tone) ---------- */
+
+.tc-scrim {
+  position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(14,9,6,.5), rgba(14,9,6,0) 24%),
+    linear-gradient(76deg,  rgba(14,9,6,.36), rgba(14,9,6,0) 44%),
+    linear-gradient(0deg,   rgba(14,9,6,.84), rgba(14,9,6,.3) 36%, rgba(14,9,6,0) 60%);
+  opacity: .92;
+  transition: opacity 1.4s ease;
+}
+.tc-stage[data-tone="soft"] .tc-scrim { opacity: .7; }
+.tc-stage[data-tone="deep"] .tc-scrim { opacity: 1; }
+
+/* ---------- the vertical welcome thread (right edge) ---------- */
+
+.tc-thread {
+  position: absolute; z-index: 10;
+  right: calc(var(--tc-mx) - .4rem);
+  top: 50%; transform: translateY(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 1.1rem;
+}
+.tc-thread i { display: block; width: 4px; height: 4px; background: var(--tc-bone-30); transform: rotate(45deg); }
+.tc-thread span {
+  writing-mode: vertical-rl; text-orientation: mixed;
+  font-family: var(--tc-tamil);
+  font-size: .95rem; font-weight: 400;
+  letter-spacing: .5em;
+  color: var(--tc-bone-30);
+  white-space: nowrap;
+}
+
+/* ---------- the threshold: editorial block, bottom-left ---------- */
+
+.tc-copy {
+  position: absolute; z-index: 10;
+  left: var(--tc-mx);
+  right: clamp(4.5rem, 12vw, 11rem);
+  bottom: calc(clamp(1.2rem, 3.4svh, 2.2rem) + clamp(3.6rem, 6svh, 4.6rem));
+  pointer-events: auto;
+}
+
+.tc-kicker {
+  display: flex; align-items: center; gap: .85rem; flex-wrap: wrap;
+  margin: 0 0 1.5rem;
+}
+.tc-kicker .tc-diya {
+  width: 19px; height: auto; color: var(--tc-bone); opacity: .92; flex: none;
+}
+.tc-kicker i { display: block; width: 2.2rem; height: 1px; background: var(--tc-bone-30); }
+.tc-kicker span {
+  font-family: var(--tc-tamil);
+  font-size: .92rem; font-weight: 400;
+  letter-spacing: .06em;
+  color: var(--tc-bone-70);
+}
+.tc-kicker-sep {
+  color: var(--tc-bone-30);
+  font-size: .9rem;
+}
+.tc-kicker-place {
+  font-family: var(--tc-sans) !important;
+  font-size: .72rem !important;
+  letter-spacing: .24em !important;
+  text-transform: uppercase;
+  color: var(--tc-bone-70) !important;
+}
+
+.tc-headline {
+  margin: 0 0 1.7rem;
+  font-family: var(--tc-serif); font-weight: 500;
+  font-size: clamp(2.7rem, 5.6vw, 5.9rem);
+  line-height: 1.05;
+  letter-spacing: .005em;
+  color: var(--tc-bone);
+  text-shadow: 0 2px 46px rgba(10,6,3,.55);
+}
+.tc-line { display: block; overflow: hidden; padding-bottom: .12em; margin-bottom: -.12em; }
+.tc-line-in { display: block; transition: transform 1.3s var(--tc-ease), filter 1.3s var(--tc-ease); }
+.tc-hero:not([data-entered]) .tc-line-in { transform: translateY(114%); filter: blur(9px); }
+.tc-hero[data-entered] .tc-line:nth-child(1) .tc-line-in { transition-delay: .45s; }
+.tc-hero[data-entered] .tc-line:nth-child(2) .tc-line-in { transition-delay: .6s; }
+.tc-headline em { font-style: italic; font-weight: 500; }
+.tc-dot { color: var(--tc-accent); }    /* first kumkum */
+
+/* the litany — three beats with kolam-dot separators */
+.tc-litany {
+  display: flex; align-items: center; flex-wrap: wrap;
+  gap: .9rem 1.15rem;
+  margin: 0 0 2.1rem;
+  font: 300 .95rem/1.5 var(--tc-sans);
+  letter-spacing: .04em;
+  color: var(--tc-bone-70);
+}
+.tc-litany i { display: block; width: 3px; height: 3px; background: var(--tc-bone-45); transform: rotate(45deg); flex: none; }
+
+/* ---------- CTAs ---------- */
+
+.tc-ctas { display: flex; align-items: center; gap: 1.8rem; flex-wrap: wrap; }
+.tc-btn {
+  display: inline-flex; align-items: center; gap: .8rem;
+  padding: 1rem 1.6rem;
+  border: 1px solid var(--tc-bone);
+  background: var(--tc-bone); color: #241407;
+  font: 500 .66rem/1 var(--tc-sans);
+  letter-spacing: .22em; text-transform: uppercase; text-decoration: none;
+  transition: background .4s ease, border-color .4s ease;
+  cursor: pointer;
+}
+.tc-btn svg { flex: none; transition: transform .4s var(--tc-ease); }
+.tc-btn:hover, .tc-btn:focus-visible { background: #fffaf0; border-color: #fffaf0; }
+.tc-btn:hover svg { transform: translateX(4px); }
+.tc-link {
+  padding: .55rem 0 .5rem;
+  border-bottom: 1px solid var(--tc-bone-30);
+  color: var(--tc-bone-70);
+  font: 500 .66rem/1 var(--tc-sans);
+  letter-spacing: .22em; text-transform: uppercase; text-decoration: none;
+  transition: color .3s ease, border-color .3s ease;
+  cursor: pointer;
+}
+.tc-link:hover, .tc-link:focus-visible { color: var(--tc-bone); border-color: rgba(242,233,216,.6); }
+
+/* ---------- bottom rail: caption · Tamil numerals · arrows ---------- */
+
+.tc-rail {
+  position: absolute; z-index: 10;
+  left: var(--tc-mx); right: var(--tc-mx);
+  bottom: clamp(1.2rem, 3.4svh, 2.2rem);
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 2rem;
+  pointer-events: auto;
+}
+
+.tc-caption {
+  position: relative; margin: 0; flex: 1 1 auto; min-width: 0; height: 1.55em;
+  overflow: hidden; pointer-events: none;
+  -webkit-mask-image: linear-gradient(90deg, #000 76%, transparent);
+          mask-image: linear-gradient(90deg, #000 76%, transparent);
+}
+.tc-caption span {
+  position: absolute; left: 0; top: 0;
+  line-height: 1.55em; white-space: nowrap;
+  font-family: var(--tc-serif); font-style: italic; font-weight: 500;
+  font-size: 1.06rem; letter-spacing: .02em;
+  color: var(--tc-bone-70);
+  opacity: 0; transform: translateY(8px);
+  transition: opacity .8s ease, transform .8s var(--tc-ease);
+}
+.tc-caption span.is-active { opacity: 1; transform: translateY(0); }
+
+.tc-controls { display: flex; align-items: center; gap: 1.4rem; flex: none; }
+
+/* Tamil numerals — the slide numbers themselves */
+.tc-nums { display: flex; align-items: baseline; gap: 1.35rem; }
+.tc-num {
+  position: relative;
+  padding: .35rem .05rem .55rem;
+  border: 0; background: transparent; cursor: pointer;
+  font-family: var(--tc-tamil); font-weight: 500;
+  font-size: 1.02rem; line-height: 1;
+  color: var(--tc-bone-30);
+  transition: color .35s ease;
+}
+.tc-num:hover { color: var(--tc-bone-70); }
+.tc-num.is-active { color: var(--tc-bone); }
+.tc-num i {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 1px;
+  background: var(--tc-accent);           /* second kumkum */
+  transform: scaleX(0); transform-origin: left center;
+}
+.tc-num.is-active i { transform: scaleX(1); transition: transform var(--tc-dur) linear; }
+
+.tc-arrows { display: flex; gap: .3rem; }
+.tc-arrow {
+  width: 38px; height: 38px;
+  display: grid; place-items: center;
+  padding: 0; border: 0; background: transparent;
+  color: var(--tc-bone-45); cursor: pointer;
+  transition: color .3s ease, transform .3s var(--tc-ease);
+}
+.tc-arrow:hover { color: var(--tc-bone); }
+.tc-arrow[data-dir="-1"]:hover { transform: translateX(-2px); }
+.tc-arrow[data-dir="1"]:hover  { transform: translateX(2px); }
+
+/* ---------- grain, veil, utilities ---------- */
+
+.tc-grain {
+  position: absolute; inset: 0; z-index: 3; pointer-events: none;
+  opacity: .03;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23g)'/%3E%3C/svg%3E");
+  background-size: 240px 240px;
+}
+.tc-veil {
+  position: absolute; inset: 0; z-index: 4;
+  background: var(--tc-ink);
+  pointer-events: none;
+  opacity: 1; transition: opacity 1.4s ease .1s;
+}
+.tc-hero[data-entered] .tc-veil { opacity: 0; pointer-events: none; visibility: hidden; }
+
+.tc-fade { transition: opacity .95s ease var(--d, 0s), transform .95s var(--tc-ease) var(--d, 0s); }
+.tc-hero:not([data-entered]) .tc-fade { opacity: 0; transform: translateY(12px); }
+
+.tc-hero ::selection { background: rgba(200,69,44,.45); color: var(--tc-bone); }
+.tc-hero :focus-visible { outline: 1px solid rgba(242,233,216,.85); outline-offset: 4px; }
+.tc-sr { position: absolute !important; width: 1px; height: 1px; margin: -1px; padding: 0; border: 0; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
+
+/* ---------- short desktop screens ---------- */
+@media (min-width: 901px) and (max-height: 760px) {
+  .tc-headline { font-size: clamp(2.3rem, 4.6vw, 4.4rem); margin-bottom: 1.2rem; }
+  .tc-kicker { margin-bottom: 1rem; }
+  .tc-litany { margin-bottom: 1.5rem; }
+  .tc-copy { bottom: calc(1.2rem + 4.2rem); }
+  .tc-caption, .tc-thread { display: none; }
+}
+
+/* ---------- dedicated mobile composition ---------- */
+@media (max-width: 900px) {
+  :root { --tc-mx: 1.35rem; }
+  .tc-hero { --tc-mx: 1.35rem; }
+  .tc-thread { display: none; }
+  .tc-copy {
+    left: var(--tc-mx); right: var(--tc-mx);
+    bottom: calc(1.15rem + 4rem);
+  }
+  .tc-kicker { margin-bottom: 1.1rem; gap: .8rem; }
+  .tc-kicker i { width: 1.8rem; }
+  .tc-kicker span { font-size: .84rem; }
+  .tc-headline { font-size: clamp(2.2rem, 9.4vw, 3.2rem); margin-bottom: 1.15rem; }
+  .tc-litany { gap: .6rem .85rem; margin-bottom: 1.6rem; font-size: .88rem; }
+  .tc-ctas { gap: 1.1rem; }
+  .tc-btn { padding: .88rem 1.15rem; letter-spacing: .18em; }
+  .tc-rail { bottom: calc(1.15rem + env(safe-area-inset-bottom, 0px)); }
+  .tc-caption { display: none; }
+  .tc-controls { width: 100%; justify-content: space-between; }
+  .tc-nums { gap: 1.6rem; }
+  .tc-num { padding: .5rem .3rem .65rem; } /* larger touch target */
+  .tc-scrim {
+    background:
+      linear-gradient(180deg, rgba(14,9,6,.44), rgba(14,9,6,0) 20%),
+      linear-gradient(0deg,   rgba(14,9,6,.9), rgba(14,9,6,.34) 42%, rgba(14,9,6,0) 64%);
+  }
+}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .tc-hero .tc-slide { transition: none; }
+  .tc-hero .tc-slide img { animation: none !important; transform: none !important; }
+  .tc-hero .tc-scrim { transition: none !important; }
+  .tc-hero .tc-line-in, .tc-hero .tc-fade, .tc-hero .tc-veil { transition: none !important; }
+  .tc-hero .tc-num i { transition: none !important; }
+  .tc-hero .tc-caption span { transition: none !important; }
+}
