@@ -60,7 +60,7 @@ export default function SignatureFlavours({ onOpenFullMenu }) {
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          onOpenFullMenu && onOpenFullMenu(e);
+          if (onOpenFullMenu) onOpenFullMenu(e);
         }
       }}
     >

@@ -1,7 +1,9 @@
 import React from 'react';
 
+const CURRENT_YEAR = new Date().getFullYear();
+
 export default function Footer({ onNavigate }) {
-  const currentYear = new Date().getFullYear();
+  const currentYear = CURRENT_YEAR;
 
   return (
     <footer className="footer footer--dark-blue" id="footer">

@@ -1,0 +1,712 @@
+/* ─────────────────────────────────────────────────────────────
+   TEMPLE CITY — CINEMATIC LUXURY LOCATION EXPERIENCE
+   04 — OUR PRESENCE | எங்கள் கிளைகள்
+   Refined Height & Vertical Spacing (Well-Proportioned Luxury)
+   ───────────────────────────────────────────────────────────── */
+
+.tc-luxury-presence {
+  position: relative;
+  background: radial-gradient(circle at 18% 25%, #0f1c32 0%, #070e1b 60%, #040810 100%);
+  padding-block: clamp(3.8rem, 5.8vw, 6rem);
+  color: #fdfaf3;
+  overflow: hidden;
+  border-top: 1px solid rgba(212, 175, 95, 0.16);
+  border-bottom: 1px solid rgba(212, 175, 95, 0.16);
+}
+
+/* Ambient glow & low-contrast background watermark */
+.tc-luxury-presence::before {
+  content: 'MADURAI';
+  position: absolute;
+  top: 3%;
+  right: -2%;
+  font-family: var(--serif, 'Cinzel', serif);
+  font-size: clamp(7rem, 16vw, 20rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.016);
+  line-height: 0.8;
+  pointer-events: none;
+  z-index: 0;
+  user-select: none;
+}
+
+.tc-luxury-presence::after {
+  content: '';
+  position: absolute;
+  bottom: 8%;
+  left: 20%;
+  width: 550px;
+  height: 350px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(197, 155, 79, 0.08) 0%, rgba(7, 14, 27, 0) 70%);
+  filter: blur(85px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.tc-pres-container {
+  position: relative;
+  z-index: 1;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   1. SECTION INTRO HEADER (Carefully Tuned Vertical Spacing)
+   ───────────────────────────────────────────────────────────── */
+.tc-pres-intro {
+  margin-bottom: clamp(2.2rem, 3.8vw, 3.2rem);
+  max-width: 900px;
+}
+
+.tc-pres-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.65rem;
+}
+
+.tc-pres-tag {
+  font-family: var(--sans, sans-serif);
+  font-size: 0.74rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #dfb76c;
+  font-weight: 600;
+}
+
+.tc-pres-sep {
+  width: 28px;
+  height: 1px;
+  background: rgba(223, 183, 108, 0.4);
+}
+
+.tc-pres-tamil {
+  font-family: 'Mukta Malar', 'Noto Sans Tamil', sans-serif;
+  font-size: 0.92rem;
+  color: rgba(247, 206, 122, 0.9);
+  letter-spacing: 0.04em;
+  font-weight: 500;
+}
+
+.tc-pres-title {
+  font-family: var(--serif, 'Cinzel', serif);
+  font-size: clamp(2.1rem, 3.8vw, 3.3rem);
+  line-height: 1.16;
+  letter-spacing: -0.015em;
+  color: #ffffff;
+  margin: 0 0 0.85rem 0;
+  font-weight: 400;
+}
+
+.tc-pres-title em {
+  font-style: italic;
+  font-family: 'Playfair Display', var(--serif, serif);
+  color: #f6c872;
+  font-weight: 400;
+}
+
+.tc-pres-desc {
+  font-family: var(--sans, sans-serif);
+  font-size: clamp(0.98rem, 1.18vw, 1.1rem);
+  line-height: 1.62;
+  color: #ded1be;
+  margin: 0;
+  max-width: 66ch;
+  font-weight: 300;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   2. IMMERSIVE ASYMMETRIC STAGE (Cinematic Showcase + Directory)
+   ───────────────────────────────────────────────────────────── */
+.tc-pres-stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1.18fr) minmax(0, 1fr);
+  gap: clamp(1.8rem, 3.2vw, 3.2rem);
+  align-items: stretch;
+  position: relative;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   LEFT COLUMN: Cinematic Showcase Feature (Refined Height)
+   ───────────────────────────────────────────────────────────── */
+.tc-showcase-card {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #080f1e;
+  border: 1px solid rgba(223, 183, 108, 0.28);
+  box-shadow: 0 24px 60px -15px rgba(0, 0, 0, 0.8),
+              0 0 40px -10px rgba(197, 155, 79, 0.16);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 510px;
+}
+
+/* Background image crossfade container */
+.tc-showcase-bg-stack {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.tc-showcase-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+  opacity: 0;
+  transform: scale(1.05);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.tc-showcase-bg-img.is-active {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 1;
+}
+
+/* Rich, multi-stop cinematic vignette */
+.tc-showcase-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(6, 13, 24, 0.22) 0%,
+    rgba(6, 13, 24, 0.38) 35%,
+    rgba(5, 11, 20, 0.86) 72%,
+    rgba(4, 9, 17, 0.98) 100%
+  );
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Architectural hairline border frame */
+.tc-showcase-hairline {
+  position: absolute;
+  inset: 10px;
+  border: 1px solid rgba(223, 183, 108, 0.22);
+  border-radius: 6px;
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* Top bar over photo: Status + Numeral */
+.tc-showcase-topbar {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 4;
+}
+
+.tc-showcase-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.3rem 0.8rem;
+  background: rgba(6, 13, 25, 0.8);
+  border: 1px solid rgba(223, 183, 108, 0.4);
+  border-radius: 999px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.tc-showcase-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #34d399;
+  box-shadow: 0 0 10px #34d399;
+}
+
+.tc-showcase-status-text {
+  font-family: var(--sans, sans-serif);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #f7e6c4;
+  font-weight: 600;
+}
+
+.tc-showcase-numeral {
+  font-family: var(--serif, 'Cinzel', serif);
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: #dfb76c;
+  letter-spacing: 0.08em;
+  opacity: 0.85;
+}
+
+/* Bottom featured content block (tightened vertical flow) */
+.tc-showcase-content {
+  position: relative;
+  z-index: 4;
+  padding: clamp(1.4rem, 2.6vw, 2.2rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.tc-showcase-meta {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.85rem;
+}
+
+.tc-showcase-name {
+  font-family: var(--serif, 'Cinzel', serif);
+  font-size: clamp(1.6rem, 2.3vw, 2.15rem);
+  font-weight: 500;
+  line-height: 1.18;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.tc-showcase-tamil {
+  font-family: 'Mukta Malar', 'Noto Sans Tamil', sans-serif;
+  font-size: 1.05rem;
+  color: #f6c872;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+}
+
+.tc-showcase-curation {
+  display: inline-block;
+  font-family: var(--sans, sans-serif);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #dfb76c;
+  font-weight: 600;
+}
+
+.tc-showcase-address {
+  font-style: normal;
+  font-family: var(--sans, sans-serif);
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: #e6ded0;
+  margin: 0;
+  max-width: 50ch;
+}
+
+.tc-showcase-amenities {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.2rem;
+}
+
+.tc-showcase-pill {
+  padding: 0.26rem 0.68rem;
+  font-family: var(--sans, sans-serif);
+  font-size: 0.68rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #f5eedf;
+  background: rgba(223, 183, 108, 0.14);
+  border: 1px solid rgba(223, 183, 108, 0.3);
+  border-radius: 4px;
+}
+
+/* Discover Location CTA */
+.tc-showcase-action {
+  margin-top: 0.45rem;
+}
+
+.tc-showcase-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.75rem 1.45rem;
+  font-family: var(--sans, sans-serif);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #070e1c;
+  background: #e5a73e;
+  border: 1px solid #e5a73e;
+  border-radius: 3px;
+  text-decoration: none;
+  box-shadow: 0 5px 18px rgba(229, 167, 62, 0.35);
+  transition: all 0.3s ease;
+  width: fit-content;
+}
+
+.tc-showcase-btn:hover {
+  background: #f7bf56;
+  border-color: #f7bf56;
+  box-shadow: 0 7px 24px rgba(229, 167, 62, 0.55);
+  transform: translateY(-2px);
+}
+
+.tc-showcase-btn .btn-arrow-diag {
+  font-size: 0.92rem;
+  line-height: 1;
+  transition: transform 0.3s ease;
+}
+
+.tc-showcase-btn:hover .btn-arrow-diag {
+  transform: translate(2px, -2px);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   RIGHT COLUMN: Curated Luxury Branch Directory Panel
+   ───────────────────────────────────────────────────────────── */
+.tc-directory-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: rgba(9, 17, 32, 0.75);
+  border: 1px solid rgba(223, 183, 108, 0.22);
+  border-radius: 8px;
+  padding: clamp(1.2rem, 1.9vw, 1.65rem);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.5);
+}
+
+.tc-dir-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid rgba(223, 183, 108, 0.2);
+  margin-bottom: 0.35rem;
+}
+
+.tc-dir-header-title {
+  font-family: var(--serif, 'Cinzel', serif);
+  font-size: 0.82rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #dfb76c;
+  font-weight: 600;
+  margin: 0;
+}
+
+.tc-dir-header-count {
+  font-family: var(--sans, sans-serif);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(223, 183, 108, 0.75);
+}
+
+/* Branch List (Tighter vertical rhythm) */
+.tc-dir-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  flex: 1;
+}
+
+/* Single Luxury Branch Row */
+.tc-dir-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) auto;
+  gap: 0.85rem;
+  align-items: center;
+  padding: clamp(0.68rem, 0.95vw, 0.88rem) 0.85rem;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  background: transparent;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.tc-dir-item:hover,
+.tc-dir-item:focus-visible,
+.tc-dir-item.is-selected {
+  background: rgba(223, 183, 108, 0.08);
+  border-color: rgba(223, 183, 108, 0.32);
+}
+
+.tc-dir-item.is-selected {
+  background: rgba(223, 183, 108, 0.14);
+  border-color: rgba(223, 183, 108, 0.55);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+}
+
+/* Left Indicator line on selected */
+.tc-dir-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 18%;
+  bottom: 18%;
+  width: 3px;
+  background: #f6c872;
+  border-radius: 2px;
+  transform: scaleY(0);
+  transition: transform 0.25s ease;
+  box-shadow: 0 0 10px rgba(246, 200, 114, 0.6);
+}
+
+.tc-dir-item:hover::before,
+.tc-dir-item.is-selected::before {
+  transform: scaleY(1);
+}
+
+/* Number */
+.tc-dir-item-num {
+  font-family: var(--serif, 'Cinzel', serif);
+  font-size: 0.98rem;
+  color: rgba(223, 183, 108, 0.65);
+  letter-spacing: 0.04em;
+  font-weight: 500;
+  transition: color 0.25s ease;
+}
+
+.tc-dir-item:hover .tc-dir-item-num,
+.tc-dir-item.is-selected .tc-dir-item-num {
+  color: #f6c872;
+}
+
+/* Details */
+.tc-dir-item-main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.18rem;
+  min-width: 0;
+}
+
+.tc-dir-item-headline {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.65rem;
+}
+
+.tc-dir-item-name {
+  font-family: var(--serif, 'Cinzel', serif);
+  font-size: clamp(0.98rem, 1.15vw, 1.1rem);
+  font-weight: 500;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: -0.005em;
+  transition: color 0.25s ease;
+}
+
+.tc-dir-item:hover .tc-dir-item-name,
+.tc-dir-item.is-selected .tc-dir-item-name {
+  color: #ffffff;
+}
+
+.tc-dir-item-tamil {
+  font-family: 'Mukta Malar', 'Noto Sans Tamil', sans-serif;
+  font-size: 0.85rem;
+  color: #dfb76c;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+.tc-dir-item-addr {
+  font-style: normal;
+  font-family: var(--sans, sans-serif);
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: #c9bcab;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.25s ease;
+}
+
+.tc-dir-item:hover .tc-dir-item-addr,
+.tc-dir-item.is-selected .tc-dir-item-addr {
+  color: #f2e9dc;
+}
+
+/* Arrow indicator button */
+.tc-dir-item-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  color: #dfb76c;
+  font-size: 0.88rem;
+  background: rgba(223, 183, 108, 0.06);
+  border: 1px solid rgba(223, 183, 108, 0.2);
+  transition: all 0.25s ease;
+}
+
+.tc-dir-item:hover .tc-dir-item-arrow,
+.tc-dir-item.is-selected .tc-dir-item-arrow {
+  color: #070e1c;
+  background: #f6c872;
+  border-color: #f6c872;
+  transform: translateX(3px);
+  box-shadow: 0 2px 10px rgba(246, 200, 114, 0.4);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   3. LUXURY SIGNATURE CALL TO ACTION BAR (Tuned Margins)
+   ───────────────────────────────────────────────────────────── */
+.tc-pres-footer {
+  margin-top: clamp(2.4rem, 4vw, 3.6rem);
+  padding-top: clamp(1.6rem, 2.4vw, 2.2rem);
+  border-top: 1px solid rgba(223, 183, 108, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.25rem 2rem;
+}
+
+.tc-pres-footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  max-width: 48ch;
+}
+
+.tc-pres-footer-sub {
+  font-family: var(--serif, 'Cinzel', serif);
+  font-size: 0.74rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #dfb76c;
+}
+
+.tc-pres-footer-text {
+  font-family: var(--sans, sans-serif);
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: #d8cbba;
+  margin: 0;
+}
+
+/* Magnetic Premium CTA Button */
+.tc-pres-cta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.95rem 1.95rem;
+  font-family: var(--sans, sans-serif);
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #070e1b;
+  background: linear-gradient(135deg, #f7d282 0%, #e1a33b 100%);
+  border: 1px solid #f7d282;
+  border-radius: 4px;
+  text-decoration: none;
+  box-shadow: 0 8px 24px -5px rgba(225, 163, 59, 0.38);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  white-space: nowrap;
+}
+
+.tc-pres-cta-link::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0) 60%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.tc-pres-cta-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 34px -5px rgba(225, 163, 59, 0.55);
+  border-color: #ffffff;
+}
+
+.tc-pres-cta-link:hover::before {
+  opacity: 0.25;
+}
+
+.tc-pres-cta-link .cta-arrow {
+  display: inline-block;
+  font-size: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.tc-pres-cta-link:hover .cta-arrow {
+  transform: translateX(4px);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   4. RESPONSIVE DESIGN
+   ───────────────────────────────────────────────────────────── */
+@media (max-width: 1040px) {
+  .tc-pres-stage {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .tc-showcase-card {
+    min-height: 440px;
+  }
+}
+
+@media (max-width: 768px) {
+  .tc-showcase-card {
+    min-height: 390px;
+  }
+
+  .tc-showcase-topbar {
+    top: 16px;
+    left: 16px;
+    right: 16px;
+  }
+
+  .tc-showcase-content {
+    padding: 1.35rem;
+  }
+
+  .tc-showcase-name {
+    font-size: 1.45rem;
+  }
+
+  .tc-showcase-tamil {
+    font-size: 0.95rem;
+  }
+
+  .tc-showcase-address {
+    font-size: 0.85rem;
+  }
+
+  .tc-directory-panel {
+    padding: 1.15rem;
+  }
+
+  .tc-dir-item {
+    grid-template-columns: 28px minmax(0, 1fr) auto;
+    gap: 0.65rem;
+    padding: 0.75rem 0.55rem;
+  }
+
+  .tc-dir-item-addr {
+    white-space: normal;
+  }
+
+  .tc-pres-footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .tc-pres-cta-link {
+    justify-content: center;
+    width: 100%;
+  }
+}

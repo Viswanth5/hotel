@@ -1,167 +1,137 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import './Hero.css';
+import logoWhite from '../assets/temple-city-logo-white.png';
 
 const SLIDES = [
   {
-    src: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&q=80&w=1800',
+    src: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&q=75&w=1200',
     srcset:
-      'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&q=80&w=1000 1000w, https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&q=80&w=1800 1800w, https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&q=80&w=2400 2400w',
+      'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&q=75&w=800 800w, https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&q=75&w=1200 1200w, https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&q=75&w=1600 1600w',
     alt: 'The Temple City dining room glowing under warm evening light',
     posDesktop: '50% 62%',
     posMobile: '58% 55%',
     tone: 'deep',
     caption: 'The dining room at dusk',
     numeral: '௧',
+    kickerTamil: 'தென்னிந்திய உணவகம்',
+    kickerPlace: 'Madurai, Tamil Nadu',
+    headlineLine1: 'Where South India',
+    headlineLine2: 'Comes Together',
+    litany: ['Authentic flavours', 'Exceptional hospitality', 'Memorable dining'],
     fallbacks: [
-      'https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&q=80&w=1800',
-      'https://picsum.photos/seed/tc-room/1800/1100.jpg',
+      'https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&q=75&w=1200',
+      'https://picsum.photos/seed/tc-room/1200/800.jpg',
     ],
   },
   {
-    src: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&q=80&w=1800',
+    src: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&q=75&w=1200',
     srcset:
-      'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&q=80&w=1000 1000w, https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&q=80&w=1800 1800w, https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&q=80&w=2400 2400w',
+      'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&q=75&w=800 800w, https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&q=75&w=1200 1200w, https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&q=75&w=1600 1600w',
     alt: 'A crisp golden dosa served at Temple City',
     posDesktop: '50% 45%',
     posMobile: '62% 40%',
     tone: 'soft',
     caption: 'Stone-ground batter, ghee-roasted crisp',
     numeral: '௨',
+    kickerTamil: 'பாரம்பரிய சுவை',
+    kickerPlace: 'Ghee Roast & Crispy Dosas',
+    headlineLine1: 'Golden Batter,',
+    headlineLine2: 'Pure Ghee Fragrance',
+    litany: ['Stone-ground heritage', 'Slow fermented', 'Freshly roasted crisp'],
     fallbacks: [
-      'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=80&w=1800',
-      'https://picsum.photos/seed/tc-dosa/1800/1100.jpg',
+      'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=75&w=1200',
+      'https://picsum.photos/seed/tc-dosa/1200/800.jpg',
     ],
   },
   {
-    src: 'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&q=80&w=1800',
+    src: 'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&q=75&w=1200',
     srcset:
-      'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&q=80&w=1000 1000w, https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&q=80&w=1800 1800w, https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&q=80&w=2400 2400w',
+      'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&q=75&w=800 800w, https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&q=75&w=1200 1200w, https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&q=75&w=1600 1600w',
     alt: 'A procession of South Indian dishes laid across the table',
     posDesktop: '50% 55%',
     posMobile: '55% 50%',
     tone: 'soft',
     caption: 'Pepper, flame and patience',
     numeral: '௩',
+    kickerTamil: 'நிகரற்ற விருந்து',
+    kickerPlace: 'Grand South Indian Feast',
+    headlineLine1: 'Recipes Passed Down',
+    headlineLine2: 'Through Generations',
+    litany: ['Pepper, flame & patience', 'Rich heritage masalas', 'Traditional spices'],
     fallbacks: [
-      'https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&q=80&w=1800',
-      'https://picsum.photos/seed/tc-spread/1800/1100.jpg',
+      'https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&q=75&w=1200',
+      'https://picsum.photos/seed/tc-spread/1200/800.jpg',
     ],
   },
   {
-    src: 'https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&q=80&w=1800',
+    src: 'https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&q=75&w=1200',
     srcset:
-      'https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&q=80&w=1000 1000w, https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&q=80&w=1800 1800w, https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&q=80&w=2400 2400w',
+      'https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&q=75&w=800 800w, https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&q=75&w=1200 1200w, https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&q=75&w=1600 1600w',
     alt: 'Warm wood and soft lamplight in the Temple City dining room',
     posDesktop: '50% 60%',
     posMobile: '50% 55%',
     tone: 'deep',
     caption: 'Lamplight and long conversations',
     numeral: '௪',
+    kickerTamil: 'இதமான உபசரிப்பு',
+    kickerPlace: 'Warmth of Madurai',
+    headlineLine1: 'Gather Around',
+    headlineLine2: 'Warm Memories',
+    litany: ['Lamplight conversations', 'Welcoming smiles', 'Unmatched comfort'],
     fallbacks: [
-      'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=1800',
-      'https://picsum.photos/seed/tc-evening/1800/1100.jpg',
+      'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=75&w=1200',
+      'https://picsum.photos/seed/tc-evening/1200/800.jpg',
     ],
   },
 ];
 
-const DURATION = 6000;
+const DURATION = 5000;
 
 export default function Hero({ onNavigate }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [entered, setEntered] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-  const [isPaused, setIsPaused] = useState(false);
-  const [reduceMotion, setReduceMotion] = useState(false);
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== 'undefined' ? window.matchMedia('(max-width: 900px)').matches : false
+  );
   const [sources, setSources] = useState(() =>
     SLIDES.map((s) => ({ src: s.src, srcset: s.srcset, fallbackStep: 0 }))
   );
 
   const heroRef = useRef(null);
-  const timerRef = useRef(null);
-  const isStartedRef = useRef(false);
-  const isPausedRef = useRef(false);
   const dragRef = useRef({ dragging: false, startX: 0, startY: 0 });
 
-  isPausedRef.current = isPaused;
-
-  // Reduced motion & mobile detection
+  // Mobile detection listener
   useEffect(() => {
-    const rmQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    setReduceMotion(rmQuery.matches);
-    const handleRmChange = (e) => setReduceMotion(e.matches);
-    rmQuery.addEventListener('change', handleRmChange);
-
     const mQuery = window.matchMedia('(max-width: 900px)');
-    setIsMobile(mQuery.matches);
     const handleMChange = (e) => setIsMobile(e.matches);
     mQuery.addEventListener('change', handleMChange);
 
     return () => {
-      rmQuery.removeEventListener('change', handleRmChange);
       mQuery.removeEventListener('change', handleMChange);
     };
   }, []);
 
   // Slide navigation
   const goTo = useCallback((targetIndex) => {
-    setCurrentIndex((prev) => {
-      const count = SLIDES.length;
-      return ((targetIndex % count) + count) % count;
-    });
+    const count = SLIDES.length;
+    setCurrentIndex(((targetIndex % count) + count) % count);
   }, []);
 
-  // Autoplay timer
+  // Guaranteed 5-second automatic carousel rotation
   useEffect(() => {
-    if (reduceMotion || isPaused || !entered) return;
-
-    timerRef.current = setTimeout(() => {
-      goTo(currentIndex + 1);
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % SLIDES.length);
     }, DURATION);
 
-    return () => {
-      if (timerRef.current) clearTimeout(timerRef.current);
-    };
-  }, [currentIndex, isPaused, entered, reduceMotion, goTo]);
+    return () => clearInterval(timer);
+  }, []);
 
-  // Entrance animation
+  // Entrance animation - instant & smooth
   useEffect(() => {
-    if (reduceMotion) {
+    const raf = requestAnimationFrame(() => {
       setEntered(true);
-      isStartedRef.current = true;
-      return;
-    }
-
-    const leadImg = new Image();
-    leadImg.src = SLIDES[0].src;
-
-    const fontReady = document.fonts ? document.fonts.ready : Promise.resolve();
-    const imgReady = leadImg.decode ? leadImg.decode() : Promise.resolve();
-
-    Promise.race([
-      Promise.allSettled([fontReady, imgReady]),
-      new Promise((resolve) => setTimeout(resolve, 2400)),
-    ]).then(() => {
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          setEntered(true);
-          isStartedRef.current = true;
-        });
-      });
     });
-  }, [reduceMotion]);
-
-  // Pause on window blur / tab switch
-  useEffect(() => {
-    const handleVisibilityChange = () => {
-      if (document.hidden) {
-        setIsPaused(true);
-      } else {
-        setIsPaused(false);
-      }
-    };
-
-    document.addEventListener('visibilitychange', handleVisibilityChange);
-    return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
+    return () => cancelAnimationFrame(raf);
   }, []);
 
   // Keyboard navigation
@@ -254,14 +224,6 @@ export default function Hero({ onNavigate }) {
       aria-roledescription="carousel"
       aria-label="Temple City — dining highlights"
       {...(entered ? { 'data-entered': '' } : {})}
-      onPointerEnter={() => setIsPaused(true)}
-      onPointerLeave={() => setIsPaused(false)}
-      onFocusCapture={() => setIsPaused(true)}
-      onBlurCapture={(e) => {
-        if (!heroRef.current?.contains(e.relatedTarget)) {
-          setIsPaused(false);
-        }
-      }}
     >
       {/* ============ full-bleed photographic stage ============ */}
       <div
@@ -291,6 +253,7 @@ export default function Hero({ onNavigate }) {
                 sizes="100vw"
                 alt={slide.alt}
                 fetchPriority={i === 0 ? 'high' : 'auto'}
+                loading={i === 0 ? 'eager' : 'lazy'}
                 decoding="async"
                 style={{ objectPosition: pos }}
                 onError={() => handleImageError(i)}
@@ -310,47 +273,53 @@ export default function Hero({ onNavigate }) {
 
       {/* ============ the threshold — editorial block ============ */}
       <div className="tc-copy">
-        <p className="tc-kicker tc-fade" style={{ '--d': '.6s' }}>
-          <svg
-            className="tc-diya"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            aria-hidden="true"
-            focusable="false"
-          >
-            <circle cx="16" cy="3.4" r="1.3" fill="#c8452c" stroke="none" />
-            <path d="M12 6.4c2.1 2.6 3.1 4.3 3.1 5.7A3.1 3.1 0 0 1 12 15.2a3.1 3.1 0 0 1-3.1-3.1c0-1.4 1-3.1 3.1-5.7Z" />
-            <path d="M12 15.2v2.3" />
-            <path d="M3.5 17.5h17c0 2.6-2.4 4.3-5.6 4.3h-5.8c-3.2 0-5.6-1.7-5.6-4.3Z" />
-          </svg>
-          <i aria-hidden="true" />
-          <span lang="ta">தென்னிந்திய உணவகம்</span>
-          <span className="tc-kicker-sep" aria-hidden="true">·</span>
-          <span className="tc-kicker-place">Madurai, Tamil Nadu</span>
-        </p>
+        <div key={currentIndex} className="tc-copy-content">
+          <p className="tc-kicker">
+            <svg
+              className="tc-diya"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <circle cx="16" cy="3.4" r="1.3" fill="#c8452c" stroke="none" />
+              <path d="M12 6.4c2.1 2.6 3.1 4.3 3.1 5.7A3.1 3.1 0 0 1 12 15.2a3.1 3.1 0 0 1-3.1-3.1c0-1.4 1-3.1 3.1-5.7Z" />
+              <path d="M12 15.2v2.3" />
+              <path d="M3.5 17.5h17c0 2.6-2.4 4.3-5.6 4.3h-5.8c-3.2 0-5.6-1.7-5.6-4.3Z" />
+            </svg>
+            <i aria-hidden="true" />
+            <span lang="ta">{activeSlide.kickerTamil}</span>
+            <span className="tc-kicker-sep" aria-hidden="true">·</span>
+            <span className="tc-kicker-place">{activeSlide.kickerPlace}</span>
+          </p>
 
-        <h1 className="tc-headline">
-          <span className="tc-line">
-            <span className="tc-line-in">Where South India</span>
-          </span>
-          <span className="tc-line">
-            <span className="tc-line-in">
-              Comes <em>Together</em>
-              <span className="tc-dot">.</span>
+          <h1 className="tc-headline">
+            <span className="tc-line">
+              <span className="tc-line-in">{activeSlide.headlineLine1}</span>
             </span>
-          </span>
-        </h1>
+            <span className="tc-line">
+              <span className="tc-line-in">
+                {activeSlide.headlineLine2}
+                <span className="tc-dot">.</span>
+              </span>
+            </span>
+          </h1>
 
-        <p className="tc-litany tc-fade" style={{ '--d': '.85s' }}>
-          Authentic flavours <i aria-hidden="true" /> Exceptional hospitality <i aria-hidden="true" />{' '}
-          Memorable dining
-        </p>
+          <p className="tc-litany">
+            {activeSlide.litany.map((item, idx) => (
+              <React.Fragment key={item}>
+                {idx > 0 && <i aria-hidden="true" />}
+                <span>{item}</span>
+              </React.Fragment>
+            ))}
+          </p>
+        </div>
 
-        <div className="tc-ctas tc-fade" style={{ '--d': '1s' }}>
+        <div className="tc-ctas tc-fade" style={{ '--d': '.4s' }}>
           <a className="tc-btn" href="#dining" onClick={handleDiningClick}>
             Explore Our Dining
             <svg
@@ -377,7 +346,7 @@ export default function Hero({ onNavigate }) {
       </div>
 
       {/* ============ bottom rail ============ */}
-      <div className="tc-rail tc-fade" style={{ '--d': '1.2s' }}>
+      <div className="tc-rail tc-fade" style={{ '--d': '.5s' }}>
         <p className="tc-caption" aria-hidden="true">
           {SLIDES.map((slide, i) => (
             <span key={slide.caption} className={i === currentIndex ? 'is-active' : ''}>
@@ -387,6 +356,17 @@ export default function Hero({ onNavigate }) {
         </p>
 
         <div className="tc-controls">
+          <div className="tc-hero-brand" aria-label="Temple City — Temple of Hotels">
+            <img
+              src={logoWhite}
+              alt="Temple City — Temple of Hotels"
+              className="tc-hero-brand__img"
+              width="824"
+              height="223"
+              loading="eager"
+              decoding="async"
+            />
+          </div>
           <div className="tc-nums">
             {SLIDES.map((slide, i) => {
               const isActive = i === currentIndex;
@@ -400,61 +380,10 @@ export default function Hero({ onNavigate }) {
                   onClick={() => goTo(i)}
                 >
                   {slide.numeral}
-                  <i key={`${i}-${currentIndex}-${isPaused}`} />
+                  <i key={`${i}-${currentIndex}`} />
                 </button>
               );
             })}
-          </div>
-
-          <div className="tc-arrows">
-            <button
-              className="tc-arrow"
-              type="button"
-              data-dir="-1"
-              aria-label="Previous slide"
-              onClick={() => goTo(currentIndex - 1)}
-            >
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 18 18"
-                fill="none"
-                aria-hidden="true"
-                focusable="false"
-              >
-                <path
-                  d="M11.5 3.5 6 9l5.5 5.5"
-                  stroke="currentColor"
-                  strokeWidth="1.3"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </button>
-            <button
-              className="tc-arrow"
-              type="button"
-              data-dir="1"
-              aria-label="Next slide"
-              onClick={() => goTo(currentIndex + 1)}
-            >
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 18 18"
-                fill="none"
-                aria-hidden="true"
-                focusable="false"
-              >
-                <path
-                  d="M6.5 3.5 12 9l-5.5 5.5"
-                  stroke="currentColor"
-                  strokeWidth="1.3"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </button>
           </div>
         </div>
       </div>

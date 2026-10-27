@@ -96,6 +96,7 @@ export default function Gallery({ onOpenLightbox, onNavigate }) {
               <img
                 src={item.thumb}
                 alt={item.alt}
+                loading="lazy"
                 decoding="async"
               />
               <figcaption className="gal__cap">

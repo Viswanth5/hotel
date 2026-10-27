@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import Lenis from 'lenis';
 
 import Preloader from './components/Preloader';
@@ -33,8 +33,8 @@ export default function App() {
     if (h === '#locations' || h.startsWith('#locations')) return 'locations';
     return 'home';
   });
-  const [scrollProgress, setScrollProgress] = useState(0);
   const [lightboxIndex, setLightboxIndex] = useState(null);
+  const isStuckRef = useRef(false);
 
   // 1. Lenis smooth scrolling initialization
   useEffect(() => {
@@ -42,24 +42,36 @@ export default function App() {
     document.body.classList.remove('is-locked');
     document.body.classList.add('is-ready');
 
+    const progressEl = document.getElementById('progress');
+
+    const updateScrollState = (y, progress) => {
+      const stuck = y > 60;
+      if (isStuckRef.current !== stuck) {
+        isStuckRef.current = stuck;
+        setIsStuck(stuck);
+      }
+      if (progressEl) {
+        progressEl.style.transform = `scaleX(${progress})`;
+      }
+    };
+
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduceMotion) {
       const handleNativeScroll = () => {
         const y = window.pageYOffset;
-        setIsStuck(y > 60);
         const docH = document.documentElement.scrollHeight - window.innerHeight;
-        setScrollProgress(docH > 0 ? Math.min(1, y / docH) : 0);
+        const progress = docH > 0 ? Math.min(1, y / docH) : 0;
+        updateScrollState(y, progress);
       };
       window.addEventListener('scroll', handleNativeScroll, { passive: true });
       return () => window.removeEventListener('scroll', handleNativeScroll);
     }
 
     const lenis = new Lenis({
-      duration: 0.85,
+      duration: 0.75,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
-      wheelMultiplier: 1.0,
-      touchMultiplier: 1.0,
+      syncTouch: false,
       infinite: false,
       autoResize: true,
     });
@@ -73,10 +85,9 @@ export default function App() {
     }
     rafId = requestAnimationFrame(raf);
 
-    // Sync scroll state directly with Lenis RAF loop (zero desync, zero jank)
+    // Sync scroll state with direct DOM update (zero React re-renders while scrolling)
     lenis.on('scroll', ({ scroll, progress }) => {
-      setIsStuck(scroll > 60);
-      setScrollProgress(progress);
+      updateScrollState(scroll, progress);
     });
 
     return () => {
@@ -256,12 +267,7 @@ export default function App() {
 
   // 6. Scroll spy for active section
   useEffect(() => {
-    if (currentPage === 'menu') {
-      setActiveSection('menu');
-      return;
-    }
-    if (currentPage === 'locations') {
-      setActiveSection('locations');
+    if (currentPage === 'menu' || currentPage === 'locations') {
       return;
     }
 
@@ -296,27 +302,35 @@ export default function App() {
 
     elements.forEach((el) => {
       let raf = null;
+      let rect = null;
       el.style.transition = 'transform .45s cubic-bezier(.22,1,.36,1)';
 
+      const onMouseEnter = () => {
+        rect = el.getBoundingClientRect();
+      };
+
       const onMouseMove = (e) => {
-        const r = el.getBoundingClientRect();
-        const x = (e.clientX - r.left - r.width / 2) * 0.16;
-        const y = (e.clientY - r.top - r.height / 2) * 0.3;
+        if (!rect) rect = el.getBoundingClientRect();
+        const x = (e.clientX - rect.left - rect.width / 2) * 0.16;
+        const y = (e.clientY - rect.top - rect.height / 2) * 0.3;
         if (raf) cancelAnimationFrame(raf);
         raf = requestAnimationFrame(() => {
-          el.style.transform = `translate(${x.toFixed(2)}px,${y.toFixed(2)}px)`;
+          el.style.transform = `translate3d(${x.toFixed(1)}px,${y.toFixed(1)}px,0)`;
         });
       };
 
       const onMouseLeave = () => {
+        rect = null;
         if (raf) cancelAnimationFrame(raf);
         el.style.transform = '';
       };
 
-      el.addEventListener('mousemove', onMouseMove);
+      el.addEventListener('mouseenter', onMouseEnter);
+      el.addEventListener('mousemove', onMouseMove, { passive: true });
       el.addEventListener('mouseleave', onMouseLeave);
 
       cleanups.push(() => {
+        el.removeEventListener('mouseenter', onMouseEnter);
         el.removeEventListener('mousemove', onMouseMove);
         el.removeEventListener('mouseleave', onMouseLeave);
       });
@@ -371,10 +385,9 @@ export default function App() {
       <div
         className="progress"
         id="progress"
-        style={{ transform: `scaleX(${scrollProgress.toFixed(4)})` }}
+        style={{ transform: 'scaleX(0)' }}
         aria-hidden="true"
       />
-      <div className="grain" aria-hidden="true" />
 
       <Preloader />
 

@@ -17,7 +17,7 @@ export default function Preloader() {
       sessionStorage.setItem('tc_visited', '1');
       setTimeout(() => {
         setIsRemoved(true);
-      }, 700);
+      }, 400);
     };
 
     if (reduceMotion || hasVisited) {
@@ -25,7 +25,7 @@ export default function Preloader() {
       return;
     }
 
-    const timer = setTimeout(releasePage, 750);
+    const timer = setTimeout(releasePage, 350);
     return () => clearTimeout(timer);
   }, []);
 

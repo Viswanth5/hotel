@@ -110,15 +110,13 @@ h3.display{font-size:clamp(1.45rem,2.4vw,2.1rem)}
    3. TEXTURE / PROGRESS / BANDS
    ============================================================ */
 .grain{
-  position:fixed;inset:0;z-index:90;pointer-events:none;opacity:.055;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size:260px 260px;
-  mix-blend-mode:multiply;
+  display:none;
 }
 .progress{
   position:fixed;top:0;left:0;height:2px;width:100%;z-index:120;
   background:linear-gradient(90deg,var(--gold),var(--turmeric));
   transform:scaleX(0);transform-origin:0 50%;pointer-events:none;
+  will-change:transform;
 }
 
 /* Athangudi tile band */
@@ -222,26 +220,23 @@ h3.display{font-size:clamp(1.45rem,2.4vw,2.1rem)}
    ============================================================ */
 [data-reveal]{
   opacity:0;transform:translateY(22px);
-  transition:opacity .75s var(--ease),transform .75s var(--ease);
+  transition:opacity .65s var(--ease),transform .65s var(--ease);
   transition-delay:var(--d,0s);
-  will-change:opacity,transform;
 }
-[data-reveal].is-visible{opacity:1;transform:none;will-change:auto}
+[data-reveal].is-visible{opacity:1;transform:none}
 
 [data-mask]{
   opacity:0;transform:translateY(20px);
-  transition:opacity .8s var(--ease),transform .8s var(--ease);
+  transition:opacity .7s var(--ease),transform .7s var(--ease);
   transition-delay:var(--d,0s);
-  will-change:opacity,transform;
 }
-[data-mask].is-visible{opacity:1;transform:none;will-change:auto}
+[data-mask].is-visible{opacity:1;transform:none}
 [data-mask] img{
-  transform:scale(1.08);
-  transition:transform 1.4s var(--ease);
+  transform:scale(1.05);
+  transition:transform 1.2s var(--ease);
   transition-delay:var(--d,0s);
-  will-change:transform;
 }
-[data-mask].is-visible img{transform:scale(1);will-change:auto}
+[data-mask].is-visible img{transform:scale(1)}
 
 /* ============================================================
    7. TEMPLE ARCH FRAME

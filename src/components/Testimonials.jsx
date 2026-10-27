@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 
 export default function Testimonials() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -22,21 +22,21 @@ export default function Testimonials() {
     },
   ];
 
-  const startTimer = () => {
+  const stopTimer = useCallback(() => {
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+      timerRef.current = null;
+    }
+  }, []);
+
+  const startTimer = useCallback(() => {
     stopTimer();
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduceMotion) return;
     timerRef.current = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % quotes.length);
     }, 7500);
-  };
-
-  const stopTimer = () => {
-    if (timerRef.current) {
-      clearInterval(timerRef.current);
-      timerRef.current = null;
-    }
-  };
+  }, [stopTimer]);
 
   useEffect(() => {
     startTimer();
@@ -54,7 +54,7 @@ export default function Testimonials() {
       stopTimer();
       document.removeEventListener('visibilitychange', handleVisibility);
     };
-  }, []);
+  }, [startTimer, stopTimer]);
 
   const handlePrev = () => {
     setCurrentIndex((prev) => (prev - 1 + quotes.length) % quotes.length);

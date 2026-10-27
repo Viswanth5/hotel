@@ -465,10 +465,8 @@ export default function Menu({ onNavigate }) {
     );
   }, [q, activeCatData]);
 
-  /* re-trigger item animation on tab switch */
-  const [panelKey, setPanelKey] = useState(0);
+  /* ensure items are immediately visible on tab switch / search */
   useEffect(() => {
-    setPanelKey((k) => k + 1);
     const reveals = document.querySelectorAll("#menu-browse [data-reveal], #menu-cta [data-reveal]");
     reveals.forEach((el) => el.classList.add("is-visible"));
   }, [activeCat, search]);
